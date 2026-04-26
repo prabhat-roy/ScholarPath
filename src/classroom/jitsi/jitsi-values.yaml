@@ -1,0 +1,9 @@
+# Jitsi Meet — alternate live classroom backend (smaller cohorts)
+prosody: { persistence: { enabled: true } }
+jicofo:  { replicaCount: 1 }
+jvb:     { replicaCount: 3 }
+web:
+  ingress:
+    enabled: true
+    hosts: [{ host: meet.scholarpath.com }]
+publicURL: https://meet.scholarpath.com

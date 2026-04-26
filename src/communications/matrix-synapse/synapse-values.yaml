@@ -1,0 +1,8 @@
+# Matrix / Synapse — open chat backend for student-teacher messaging
+image: { repository: matrixdotorg/synapse, tag: latest }
+postgresql: { enabled: true }
+config:
+  serverName: chat.scholarpath.com
+ingress:
+  enabled: true
+  hosts: [{ host: chat.scholarpath.com }]

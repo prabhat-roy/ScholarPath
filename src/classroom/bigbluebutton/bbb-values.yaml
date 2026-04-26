@@ -1,0 +1,8 @@
+# BigBlueButton — open-source virtual classroom (web conferencing)
+image: { repository: bigbluebutton/bigbluebutton, tag: 2.7 }
+turn:
+  enabled: true
+  realm: turn.scholarpath.internal
+ingress:
+  enabled: true
+  hosts: [{ host: classroom.scholarpath.com }]
