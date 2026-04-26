@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parent-portal
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: parent-portal, scholarpath.io/domain: communications }
+data:
+  LOG_LEVEL: info
+  PORT: "50182"

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attendance-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: attendance-service, scholarpath.io/domain: classroom }
+data:
+  LOG_LEVEL: info
+  PORT: "50083"

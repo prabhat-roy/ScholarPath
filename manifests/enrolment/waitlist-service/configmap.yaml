@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: waitlist-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: waitlist-service, scholarpath.io/domain: enrolment }
+data:
+  LOG_LEVEL: info
+  PORT: "50041"

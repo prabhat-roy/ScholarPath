@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: performance-review
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: performance-review, scholarpath.io/domain: staff }
+data:
+  LOG_LEVEL: info
+  PORT: "50242"

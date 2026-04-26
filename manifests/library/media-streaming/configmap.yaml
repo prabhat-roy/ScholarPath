@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: media-streaming
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: media-streaming, scholarpath.io/domain: library }
+data:
+  LOG_LEVEL: info
+  PORT: "50223"

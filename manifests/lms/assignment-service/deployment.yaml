@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assignment-service
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: assignment-service
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: lms
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: assignment-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: assignment-service, scholarpath.io/domain: lms }
+    spec:
+      serviceAccountName: assignment-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: assignment-service
+          image: harbor.scholarpath.internal/scholarpath/assignment-service:latest
+          ports: [{ containerPort: 50100, name: http }]
+          envFrom: [{ configMapRef: { name: assignment-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50100 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50100 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

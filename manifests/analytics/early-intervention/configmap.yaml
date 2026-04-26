@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: early-intervention
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: early-intervention, scholarpath.io/domain: analytics }
+data:
+  LOG_LEVEL: info
+  PORT: "50261"

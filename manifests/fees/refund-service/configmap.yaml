@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: refund-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: refund-service, scholarpath.io/domain: fees }
+data:
+  LOG_LEVEL: info
+  PORT: "50203"

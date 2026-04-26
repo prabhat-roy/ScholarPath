@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-streaming
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: media-streaming
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: library
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: media-streaming } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: media-streaming, scholarpath.io/domain: library }
+    spec:
+      serviceAccountName: media-streaming
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: media-streaming
+          image: harbor.scholarpath.internal/scholarpath/media-streaming:latest
+          ports: [{ containerPort: 50223, name: http }]
+          envFrom: [{ configMapRef: { name: media-streaming } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50223 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50223 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

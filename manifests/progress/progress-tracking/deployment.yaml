@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: progress-tracking
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: progress-tracking
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: progress
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: progress-tracking } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: progress-tracking, scholarpath.io/domain: progress }
+    spec:
+      serviceAccountName: progress-tracking
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: progress-tracking
+          image: harbor.scholarpath.internal/scholarpath/progress-tracking:latest
+          ports: [{ containerPort: 50160, name: http }]
+          envFrom: [{ configMapRef: { name: progress-tracking } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50160 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50160 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

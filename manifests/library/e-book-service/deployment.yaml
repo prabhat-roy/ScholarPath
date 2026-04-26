@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-book-service
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: e-book-service
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: library
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: e-book-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: e-book-service, scholarpath.io/domain: library }
+    spec:
+      serviceAccountName: e-book-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: e-book-service
+          image: harbor.scholarpath.internal/scholarpath/e-book-service:latest
+          ports: [{ containerPort: 50221, name: http }]
+          envFrom: [{ configMapRef: { name: e-book-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50221 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50221 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

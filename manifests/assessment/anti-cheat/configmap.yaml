@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anti-cheat
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: anti-cheat, scholarpath.io/domain: assessment }
+data:
+  LOG_LEVEL: info
+  PORT: "50124"

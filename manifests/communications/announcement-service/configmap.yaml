@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: announcement-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: announcement-service, scholarpath.io/domain: communications }
+data:
+  LOG_LEVEL: info
+  PORT: "50181"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blockchain-anchor
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: blockchain-anchor
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: certifications
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: blockchain-anchor } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: blockchain-anchor, scholarpath.io/domain: certifications }
+    spec:
+      serviceAccountName: blockchain-anchor
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: blockchain-anchor
+          image: harbor.scholarpath.internal/scholarpath/blockchain-anchor:latest
+          ports: [{ containerPort: 50142, name: http }]
+          envFrom: [{ configMapRef: { name: blockchain-anchor } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50142 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50142 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

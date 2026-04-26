@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: document-verification
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: document-verification, scholarpath.io/domain: enrolment }
+data:
+  LOG_LEVEL: info
+  PORT: "50042"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grading-service
+  namespace: scholarpath
+  labels:
+    app.kubernetes.io/name: grading-service
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: assessment
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: grading-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: grading-service, scholarpath.io/domain: assessment }
+    spec:
+      serviceAccountName: grading-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: grading-service
+          image: harbor.scholarpath.internal/scholarpath/grading-service:latest
+          ports: [{ containerPort: 50123, name: http }]
+          envFrom: [{ configMapRef: { name: grading-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50123 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50123 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

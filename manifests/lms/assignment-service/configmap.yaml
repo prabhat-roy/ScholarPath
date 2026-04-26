@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: assignment-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: assignment-service, scholarpath.io/domain: lms }
+data:
+  LOG_LEVEL: info
+  PORT: "50100"

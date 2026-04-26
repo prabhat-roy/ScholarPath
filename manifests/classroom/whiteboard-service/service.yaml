@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whiteboard-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: whiteboard-service, scholarpath.io/domain: classroom }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50081, targetPort: 50081 }]
+  selector: { app.kubernetes.io/name: whiteboard-service }

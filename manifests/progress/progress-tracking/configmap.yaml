@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: progress-tracking
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: progress-tracking, scholarpath.io/domain: progress }
+data:
+  LOG_LEVEL: info
+  PORT: "50160"
