@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.progress.events",
+  "name": "MilestoneAchieved",
+  "doc": "progress.milestone.achieved - emitted when a student reaches a learning milestone",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "student_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "course_id", "type": "string" },
+    { "name": "milestone_code", "type": "string" },
+    { "name": "competency_code", "type": ["null","string"], "default": null },
+    { "name": "mastery_score", "type": ["null","double"], "default": null }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.library.events",
+  "name": "ResourceBorrowed",
+  "doc": "library.resource.borrowed - student borrowed an e-book / OER resource",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "loan_id", "type": "string" },
+    { "name": "resource_id", "type": "string" },
+    { "name": "borrower_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "due_at", "type": { "type": "long", "logicalType": "timestamp-millis" } }
+  ]
+}

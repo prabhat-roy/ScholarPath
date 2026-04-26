@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.fees.events",
+  "name": "PaymentCaptured",
+  "doc": "fees.payment.captured - emitted by payment-gateway",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "payment_id", "type": "string" },
+    { "name": "invoice_id", "type": "string" },
+    { "name": "payer_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "amount_cents", "type": "long" },
+    { "name": "currency", "type": "string" },
+    { "name": "gateway", "type": "string" }
+  ]
+}

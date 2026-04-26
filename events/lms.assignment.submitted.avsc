@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.lms.events",
+  "name": "AssignmentSubmitted",
+  "doc": "lms.assignment.submitted - emitted when a student submits an assignment",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "submission_id", "type": "string" },
+    { "name": "assignment_id", "type": "string" },
+    { "name": "course_id", "type": "string" },
+    { "name": "student_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "submitted_at", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "attempt_number", "type": "int", "default": 1 },
+    { "name": "is_late", "type": "boolean", "default": false }
+  ]
+}

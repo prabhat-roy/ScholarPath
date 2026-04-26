@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.identity.events",
+  "name": "SessionStarted",
+  "doc": "identity.session.started - emitted on student/teacher/parent login",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "user_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "user_role", "type": { "type": "enum", "name": "UserRole", "symbols": ["STUDENT","TEACHER","PARENT","ADMIN","STAFF"] } },
+    { "name": "client_id", "type": "string" },
+    { "name": "ip_hash", "type": "string", "doc": "Hashed source IP for privacy" }
+  ]
+}

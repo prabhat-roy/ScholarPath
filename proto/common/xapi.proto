@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package scholarpath.common.v1;
+
+import "scholarpath/common/v1/student_ref.proto";
+
+// XApiStatement is a wire-friendly representation of an xAPI Statement
+// (Tin Can API). Every learning interaction (video watched, quiz attempted,
+// assignment submitted) is materialised as an XApiStatement and published
+// to the LRS via Kafka.
+message XApiStatement {
+  string statement_id = 1;
+  StudentRef actor = 2;
+  Verb verb = 3;
+  Object object = 4;
+  Result result = 5;
+  Context context = 6;
+  string timestamp = 7;        // ISO 8601
+}
+
+message Verb {
+  string id = 1;               // e.g. http://adlnet.gov/expapi/verbs/completed
+  map<string, string> display = 2;
+}
+
+message Object {
+  string id = 1;               // e.g. https://scholarpath.io/courses/{id}/lessons/{id}
+  string definition_type = 2;  // e.g. http://adlnet.gov/expapi/activities/lesson
+  map<string, string> definition_name = 3;
+}
+
+message Result {
+  bool completion = 1;
+  bool success = 2;
+  Score score = 3;
+  string duration = 4;         // ISO 8601 PnYnMnDTnHnMnS
+}
+
+message Score {
+  double scaled = 1;
+  double raw = 2;
+  double min = 3;
+  double max = 4;
+}
+
+message Context {
+  string registration = 1;
+  string course_id = 2;
+  string assignment_id = 3;
+}

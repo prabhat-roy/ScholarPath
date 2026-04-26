@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.staff.events",
+  "name": "TimetableUpdated",
+  "doc": "staff.timetable.updated - faculty / class timetable changed",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "timetable_id", "type": "string" },
+    { "name": "course_id", "type": "string" },
+    { "name": "term", "type": "string" }
+  ]
+}

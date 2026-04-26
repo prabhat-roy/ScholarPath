@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.xapi.events",
+  "name": "XApiStatementRecorded",
+  "doc": "xapi.statement.recorded - every learning interaction as an xAPI statement",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "statement_id", "type": "string" },
+    { "name": "actor_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "verb_id", "type": "string" },
+    { "name": "object_id", "type": "string" },
+    { "name": "raw_statement", "type": "string", "doc": "JSON-encoded full xAPI statement" }
+  ]
+}

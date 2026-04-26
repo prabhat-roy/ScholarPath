@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.compliance.events",
+  "name": "CoppaConsentGranted",
+  "doc": "compliance.coppa.consent.granted - parental consent for under-13 student",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "child_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "parent_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "scopes", "type": { "type": "array", "items": "string" } },
+    { "name": "verification_method", "type": { "type": "enum", "name": "VerificationMethod", "symbols": ["CREDIT_CARD","GOV_ID","KNOWLEDGE_BASED","E_SIGN"] } },
+    { "name": "expires_at", "type": ["null", { "type": "long", "logicalType": "timestamp-millis" }], "default": null }
+  ]
+}

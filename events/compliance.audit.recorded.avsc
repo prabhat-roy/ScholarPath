@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.compliance.events",
+  "name": "AuditRecorded",
+  "doc": "compliance.audit.recorded - immutable audit log of every record access + grade change",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": "string" },
+    { "name": "actor_role", "type": "string" },
+    { "name": "action", "type": "string" },
+    { "name": "resource", "type": "string" },
+    { "name": "resource_owner_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "reason", "type": ["null","string"], "default": null },
+    { "name": "previous_value_hash", "type": ["null","string"], "default": null },
+    { "name": "new_value_hash", "type": ["null","string"], "default": null }
+  ]
+}

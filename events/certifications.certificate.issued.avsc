@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.certifications.events",
+  "name": "CertificateIssued",
+  "doc": "certifications.certificate.issued - emitted when a certificate / badge is issued",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "certificate_id", "type": "string" },
+    { "name": "holder_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "course_id", "type": ["null","string"], "default": null },
+    { "name": "issuing_institution", "type": "string" },
+    { "name": "issued_at", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "blockchain_anchor_tx", "type": ["null","string"], "default": null }
+  ]
+}

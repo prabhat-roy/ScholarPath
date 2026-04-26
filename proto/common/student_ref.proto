@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package scholarpath.common.v1;
+
+// StudentRef is the tokenised reference to a student record. Reverse-lookup
+// of the underlying student_id is gated by Vault and only granted with a valid
+// FERPA consent context. Always use StudentRef in cross-service contracts to
+// avoid leaking student PII.
+message StudentRef {
+  // Opaque token. Never derive any meaning from its value.
+  string token = 1;
+}

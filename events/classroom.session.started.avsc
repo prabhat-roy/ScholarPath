@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.classroom.events",
+  "name": "SessionStarted",
+  "doc": "classroom.session.started - emitted by virtual-classroom when a live session begins",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "session_id", "type": "string" },
+    { "name": "course_id", "type": "string" },
+    { "name": "host_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "max_participants", "type": "int" },
+    { "name": "is_recorded", "type": "boolean", "default": false }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.enrolment.events",
+  "name": "StudentEnrolled",
+  "doc": "enrolment.student.enrolled - emitted when a student enrols in a course / programme",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "enrolment_id", "type": "string" },
+    { "name": "student_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "course_id", "type": "string" },
+    { "name": "term", "type": "string" },
+    { "name": "enrolment_status", "type": { "type": "enum", "name": "EnrolmentStatus", "symbols": ["ACTIVE","WAITLISTED","DROPPED","COMPLETED"] } },
+    { "name": "is_minor_under_13", "type": "boolean", "default": false }
+  ]
+}

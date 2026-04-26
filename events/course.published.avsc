@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.course.events",
+  "name": "CoursePublished",
+  "doc": "course.published - a course (or new version) became student-visible",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "course_id", "type": "string" },
+    { "name": "version", "type": "string" },
+    { "name": "term", "type": ["null","string"], "default": null },
+    { "name": "lti_enabled", "type": "boolean", "default": false },
+    { "name": "scorm_enabled", "type": "boolean", "default": false }
+  ]
+}

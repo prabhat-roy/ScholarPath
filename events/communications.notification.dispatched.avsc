@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.communications.events",
+  "name": "NotificationDispatched",
+  "doc": "communications.notification.dispatched - multi-channel notification fan-out",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "notification_id", "type": "string" },
+    { "name": "channel", "type": { "type": "enum", "name": "Channel", "symbols": ["EMAIL","SMS","PUSH","IN_APP","PARENT_PORTAL"] } },
+    { "name": "recipient_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "template_code", "type": "string" }
+  ]
+}

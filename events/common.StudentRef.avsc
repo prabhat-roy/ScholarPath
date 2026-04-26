@@ -1,0 +1,8 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.common.events",
+  "name": "StudentRef",
+  "fields": [
+    { "name": "token", "type": "string", "doc": "Tokenised student reference; reverse-lookup gated by Vault and FERPA consent" }
+  ]
+}

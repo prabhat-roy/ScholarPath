@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.assessment.events",
+  "name": "ExamCompleted",
+  "doc": "assessment.exam.completed - emitted when a student finishes an exam attempt",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id", "type": ["null","string"], "default": null },
+    { "name": "attempt_id", "type": "string" },
+    { "name": "exam_id", "type": "string" },
+    { "name": "course_id", "type": "string" },
+    { "name": "student_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "score_raw", "type": ["null","double"], "default": null },
+    { "name": "score_scaled", "type": ["null","double"], "default": null },
+    { "name": "duration_seconds", "type": "long" },
+    { "name": "proctoring_flags", "type": { "type": "array", "items": "string" }, "default": [] }
+  ]
+}

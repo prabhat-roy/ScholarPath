@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "io.scholarpath.analytics.events",
+  "name": "EngagementComputed",
+  "doc": "analytics.engagement.computed - per-student engagement score recomputed",
+  "fields": [
+    { "name": "event_id", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "student_ref", "type": "io.scholarpath.common.events.StudentRef" },
+    { "name": "course_id", "type": ["null","string"], "default": null },
+    { "name": "engagement_score", "type": "double" },
+    { "name": "at_risk", "type": "boolean", "default": false }
+  ]
+}
