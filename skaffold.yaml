@@ -1,9 +1,16 @@
+﻿# Skaffold pipeline for ScholarPath
 apiVersion: skaffold/v4beta11
 kind: Config
-metadata:
-  name: scholarpath
+metadata: { name: scholarpath }
 build:
-  artifacts: []   # filled in per service in src/<domain>/<service>/skaffold.yaml
+  artifacts:
+    - { image: scholarpath/api-gateway, context: src/api-gateway }
+    - { image: scholarpath/identity-service, context: src/identity-service }
+  local: { push: false }
 deploy:
   helm:
-    releases: []  # filled in per service
+    releases:
+      - { name: api-gateway, chartPath: helm/charts/api-gateway, namespace: scholarpath }
+profiles:
+  - name: prod
+    deploy: { kubectl: { manifests: ["manifests/prod/*.yaml"] } }

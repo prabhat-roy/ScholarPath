@@ -1,0 +1,7 @@
+﻿{
+  "server": "https://wpt.scholarpath.internal",
+  "tests": [
+    { "url": "https://www.scholarpath.internal/", "location": "Dulles:Chrome", "runs": 3, "connectivity": "4G" },
+    { "url": "https://app.scholarpath.internal/", "location": "Mumbai:Chrome", "runs": 3, "connectivity": "Cable" }
+  ]
+}

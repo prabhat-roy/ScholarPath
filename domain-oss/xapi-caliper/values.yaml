@@ -1,0 +1,3 @@
+﻿# xAPI + Caliper — learning analytics standards
+lrs: { type: learninglocker, postgres: { enabled: true } }
+caliper: { sensor: { enabled: true } }

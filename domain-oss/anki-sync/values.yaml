@@ -1,0 +1,3 @@
+﻿# Anki sync server — self-hosted spaced-repetition sync
+image: { repository: ankicommunity/anki-sync-server, tag: latest }
+anki: { server: { port: 27701 } }

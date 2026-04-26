@@ -1,0 +1,9 @@
+﻿{
+  "defaults": { "standard": "WCAG2AA", "timeout": 30000, "concurrency": 4, "chromeLaunchConfig": { "args": ["--no-sandbox"] } },
+  "urls": [
+    "https://www.scholarpath.internal/",
+    "https://www.scholarpath.internal/about",
+    "https://app.scholarpath.internal/login",
+    "https://app.scholarpath.internal/dashboard"
+  ]
+}

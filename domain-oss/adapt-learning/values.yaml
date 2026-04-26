@@ -1,0 +1,2 @@
+﻿# Adapt Learning — responsive HTML5 e-learning authoring
+adapt: { framework-version: 5.x, plugins: [adapt-contrib-narrative, adapt-contrib-mcq] }

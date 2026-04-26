@@ -1,0 +1,3 @@
+﻿# H5P — interactive content (interactive video, branching scenario, course presentation)
+image: { repository: h5p/h5p-php-library, tag: latest }
+h5p: { content-types: [course-presentation, interactive-video, branching-scenario, drag-the-words] }

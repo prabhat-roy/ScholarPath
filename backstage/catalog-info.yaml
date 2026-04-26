@@ -1,0 +1,9 @@
+﻿apiVersion: backstage.io/v1alpha1
+kind: System
+metadata: { name: scholarpath, description: ScholarPath enterprise platform }
+spec: { owner: platform-team, domain: scholarpath }
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata: { name: scholarpath }
+spec: { owner: platform-team }
