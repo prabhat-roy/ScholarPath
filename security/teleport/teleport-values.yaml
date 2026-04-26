@@ -1,0 +1,10 @@
+clusterName: scholarpath.teleport.internal
+authentication:
+  type: github
+  githubConnector:
+    name: github
+    redirectUrl: https://teleport.scholarpath.internal/v1/webapi/github/callback
+kubeClusterName: scholarpath-prod
+ingress:
+  enabled: true
+  hostname: teleport.scholarpath.internal

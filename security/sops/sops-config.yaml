@@ -1,0 +1,7 @@
+creation_rules:
+  - path_regex: secrets/scholarpath/.*\.yaml
+    kms: arn:aws:kms:us-east-1:111111111111:alias/scholarpath-sops
+  - path_regex: secrets/scholarpath/gcp/.*\.yaml
+    gcp_kms: projects/scholarpath-prod/locations/global/keyRings/scholarpath/cryptoKeys/sops
+  - path_regex: secrets/scholarpath/azure/.*\.yaml
+    azure_keyvault: https://scholarpath-kv.vault.azure.net/keys/sops/abc123

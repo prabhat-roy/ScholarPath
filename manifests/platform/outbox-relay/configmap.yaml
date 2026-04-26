@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: outbox-relay
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: outbox-relay, scholarpath.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51002"
