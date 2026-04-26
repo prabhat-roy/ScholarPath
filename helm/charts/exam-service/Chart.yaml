@@ -1,0 +1,6 @@
+apiVersion: v2
+name: exam-service
+description: Exam scheduling, delivery, attempt persistence (QTI 2.2 items)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

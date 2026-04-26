@@ -1,0 +1,45 @@
+{
+  "realm": "scholarpath",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": true,
+  "resetPasswordAllowed": true,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+  "passwordPolicy": "length(12) and specialChars(1) and upperCase(1) and digits(1) and notUsername and passwordHistory(5)",
+  "otpPolicyType": "totp",
+  "otpPolicyAlgorithm": "HmacSHA256",
+  "otpPolicyDigits": 6,
+  "webAuthnPolicyRpEntityName": "ScholarPath",
+  "clients": [
+    { "clientId": "student-portal",  "publicClient": true,  "redirectUris": ["https://scholarpath.io/*"],            "webOrigins": ["+"] },
+    { "clientId": "teacher-portal",  "publicClient": false, "redirectUris": ["https://teacher.scholarpath.io/*"] },
+    { "clientId": "parent-portal",   "publicClient": false, "redirectUris": ["https://parent.scholarpath.io/*"] },
+    { "clientId": "admin-portal",    "publicClient": false, "redirectUris": ["https://admin.scholarpath.io/*"] },
+    { "clientId": "mobile-app",      "publicClient": true },
+    { "clientId": "lti-tool-provider", "publicClient": false, "protocol": "openid-connect", "attributes": { "lti.13.deployment_ids": "default" } }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "student" },
+      { "name": "teacher" },
+      { "name": "parent" },
+      { "name": "counsellor" },
+      { "name": "registrar" },
+      { "name": "admin" }
+    ]
+  },
+  "identityProviders": [
+    { "alias": "google-classroom", "providerId": "google", "enabled": true, "config": { "clientId": "google-client-id", "clientSecret": "${vault:secret/keycloak/google}" } },
+    { "alias": "microsoft365",     "providerId": "microsoft", "enabled": true, "config": { "clientId": "ms-client-id",  "clientSecret": "${vault:secret/keycloak/microsoft}" } }
+  ]
+}

@@ -1,0 +1,15 @@
+image: { repository: scholarpath/enrolment-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 2
+service: { type: ClusterIP, port: 50200, targetPort: 50200 }
+resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 1000m, memory: 512Mi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50200 } }
+  readiness: { httpGet: { path: /healthz, port: 50200 } }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: enrolment-service, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: enrolment }
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info }
+cloud: { provider: "" }

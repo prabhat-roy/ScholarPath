@@ -1,0 +1,15 @@
+image: { repository: scholarpath/auth-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 2
+service: { type: ClusterIP, port: 50100, targetPort: 50100 }
+resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 1000m, memory: 512Mi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50100 }, initialDelaySeconds: 15 }
+  readiness: { httpGet: { path: /healthz, port: 50100 }, initialDelaySeconds: 5 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: auth-service, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: identity }
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info }
+cloud: { provider: "" }

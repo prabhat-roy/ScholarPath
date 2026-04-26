@@ -1,0 +1,3 @@
+cloud: { provider: azure, storageClass: managed-csi, ingressClass: azure-application-gateway }
+serviceAccount: { annotations: { azure.workload.identity/client-id: "{{ .Values.azure.clientId }}" } }
+envFrom: [{ secretRef: { name: enrolment-service-azure-secrets } }]

@@ -1,0 +1,15 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata: { name: scholarpath-cross-domain-bff-only, namespace: scholarpath }
+spec:
+  endpointSelector: { matchLabels: { app.kubernetes.io/part-of: scholarpath } }
+  ingress:
+    - fromEndpoints:
+        - matchLabels: { app.kubernetes.io/name: api-gateway }
+        - matchLabels: { app.kubernetes.io/name: student-bff }
+        - matchLabels: { app.kubernetes.io/name: teacher-bff }
+        - matchLabels: { app.kubernetes.io/name: parent-bff }
+        - matchLabels: { app.kubernetes.io/name: admin-bff }
+        - matchLabels: { app.kubernetes.io/name: mobile-bff }
+        - matchLabels: { app.kubernetes.io/name: graphql-gateway }
+        - matchLabels: { app.kubernetes.io/name: lti-tool-provider }

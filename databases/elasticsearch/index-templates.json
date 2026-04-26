@@ -1,0 +1,18 @@
+{
+  "index_patterns": ["scholarpath-courses-*", "scholarpath-library-*"],
+  "template": {
+    "settings": { "number_of_shards": 3, "number_of_replicas": 2 },
+    "mappings": {
+      "properties": {
+        "course_id":   { "type": "keyword" },
+        "title":       { "type": "text", "analyzer": "standard" },
+        "description": { "type": "text", "analyzer": "english" },
+        "subject":     { "type": "keyword" },
+        "grade_level": { "type": "keyword" },
+        "instructor":  { "type": "keyword" },
+        "tags":        { "type": "keyword" },
+        "created_at":  { "type": "date" }
+      }
+    }
+  }
+}

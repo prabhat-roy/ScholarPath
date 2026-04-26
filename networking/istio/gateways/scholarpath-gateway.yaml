@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata: { name: scholarpath, namespace: istio-system }
+spec:
+  selector: { istio: ingressgateway }
+  servers:
+    - port: { number: 443, name: https, protocol: HTTPS }
+      tls: { mode: SIMPLE, credentialName: scholarpath-tls }
+      hosts:
+        - "scholarpath.io"
+        - "teacher.scholarpath.io"
+        - "parent.scholarpath.io"
+        - "admin.scholarpath.io"
+        - "api.scholarpath.io"
+        - "lti.scholarpath.io"

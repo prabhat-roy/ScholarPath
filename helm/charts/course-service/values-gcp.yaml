@@ -1,0 +1,3 @@
+cloud: { provider: gcp }
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: "scholarpath-course-service@{{ .Values.gcp.project }}.iam.gserviceaccount.com" } }
+envFrom: [{ secretRef: { name: course-service-gcp-secrets } }]

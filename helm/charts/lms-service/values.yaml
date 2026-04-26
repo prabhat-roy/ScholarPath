@@ -1,0 +1,13 @@
+image: { repository: scholarpath/lms-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 3
+service: { type: ClusterIP, port: 50500, targetPort: 50500 }
+resources: { requests: { cpu: 200m, memory: 512Mi }, limits: { cpu: 2000m, memory: 2Gi } }
+probes: { liveness: { httpGet: { path: /healthz, port: 50500 } }, readiness: { httpGet: { path: /healthz, port: 50500 } } }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: lms-service, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: lms }
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info }
+cloud: { provider: "" }

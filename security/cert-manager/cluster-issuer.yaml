@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata: { name: scholarpath-vault-issuer }
+spec:
+  vault:
+    server: https://vault.scholarpath.internal
+    path: pki/sign/scholarpath-mesh
+    auth:
+      kubernetes:
+        role: cert-manager
+        mountPath: /v1/auth/kubernetes
+        secretRef: { name: cert-manager-vault-token, key: token }

@@ -1,0 +1,20 @@
+{
+  "name": "scholarpath-lms-postgres",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "${POSTGRES_HOST}",
+    "database.port": "5432",
+    "database.user": "${POSTGRES_USER}",
+    "database.password": "${POSTGRES_PASSWORD}",
+    "database.dbname": "scholarpath",
+    "topic.prefix": "lms",
+    "publication.name": "scholarpath_pub",
+    "slot.name": "scholarpath_slot",
+    "snapshot.mode": "exported",
+    "transforms": "unwrap,pii",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.pii.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.pii.fields": "student_id,student_email,parent_email,phone"
+  }
+}

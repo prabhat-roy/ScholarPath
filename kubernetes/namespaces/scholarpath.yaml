@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath
+  labels: { scholarpath.io/domain: shared, pod-security.kubernetes.io/enforce: restricted, pod-security.kubernetes.io/warn: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-platform
+  labels: { scholarpath.io/domain: platform, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-identity
+  labels: { scholarpath.io/domain: identity, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-enrolment
+  labels: { scholarpath.io/domain: enrolment, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-course
+  labels: { scholarpath.io/domain: course, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-classroom
+  labels: { scholarpath.io/domain: classroom, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-lms
+  labels: { scholarpath.io/domain: lms, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-assessment
+  labels: { scholarpath.io/domain: assessment, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-certifications
+  labels: { scholarpath.io/domain: certifications, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-progress
+  labels: { scholarpath.io/domain: progress, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-communications
+  labels: { scholarpath.io/domain: communications, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-fees
+  labels: { scholarpath.io/domain: fees, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-library
+  labels: { scholarpath.io/domain: library, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-staff
+  labels: { scholarpath.io/domain: staff, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-analytics
+  labels: { scholarpath.io/domain: analytics, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scholarpath-compliance
+  labels: { scholarpath.io/domain: compliance, pod-security.kubernetes.io/enforce: restricted }

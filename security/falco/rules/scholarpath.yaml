@@ -1,0 +1,28 @@
+- rule: Unexpected outbound connection from scholarpath namespace
+  desc: Detects unexpected egress destinations from ScholarPath workloads.
+  condition: >
+    evt.type=connect and evt.dir=< and
+    container and k8s_ns_name="scholarpath" and
+    not fd.sip in (allowed_scholarpath_egress)
+  output: "Unexpected egress from %container.name to %fd.sip:%fd.sport"
+  priority: WARNING
+  tags: [network, scholarpath]
+
+- rule: Student PII raw access
+  desc: Service queried student vault path without consent / FERPA context.
+  condition: >
+    fd.name endswith "/v1/students" and not k8s.pod.label.scholarpath.io/ferpa-aware="true"
+  output: "Raw student lookup without FERPA context: %container.name"
+  priority: WARNING
+  tags: [pii, scholarpath, ferpa]
+
+- rule: Proctoring video write outside whitelisted path
+  desc: Raw proctoring video must only be written to the proctoring bucket mount.
+  condition: >
+    open_write and fd.name contains "proctoring" and not fd.name startswith "/var/scholarpath/proctoring"
+  output: "Proctoring video written outside whitelisted path: %fd.name (%container.name)"
+  priority: CRITICAL
+  tags: [pii, proctoring, scholarpath]
+
+- list: allowed_scholarpath_egress
+  items: ["10.0.0.0/8","172.16.0.0/12"]

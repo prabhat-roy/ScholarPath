@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: ScholarPath Student Portal API
+  version: 0.1.0
+  description: |
+    Student-facing API surface (Next.js student portal). All responses
+    avoid raw student identifiers - StudentRef tokens are used throughout.
+    Frontend must pass axe-core (WCAG 2.1 AA) in CI before this API is
+    considered consumable.
+servers:
+  - { url: https://api.scholarpath.io,         description: Production }
+  - { url: https://staging.api.scholarpath.io, description: Staging }
+paths:
+  /healthz:
+    get:
+      tags: [system]
+      operationId: getStudentHealth
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Health' } } } }
+
+  /v1/me/courses:
+    get:
+      tags: [courses]
+      operationId: listMyCourses
+      security: [{ studentAuth: [] }]
+      responses:
+        '200':
+          description: My enrolled courses
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/CourseSummary' }
+        '401': { $ref: '#/components/responses/Error' }
+
+  /v1/me/assignments/{id}/submit:
+    post:
+      tags: [assignments]
+      operationId: submitAssignment
+      security: [{ studentAuth: [] }]
+      parameters:
+        - { in: path,   name: id, required: true, schema: { type: string } }
+        - { in: header, name: X-COPPA-Consent, required: false, schema: { type: string }, description: "Required when learner is under 13" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SubmissionRequest' }
+      responses:
+        '201': { description: Submitted, content: { application/json: { schema: { $ref: '#/components/schemas/Submission' } } } }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+
+  /v1/me/recommendations:
+    get:
+      tags: [progress]
+      operationId: getMyRecommendations
+      security: [{ studentAuth: [] }]
+      responses:
+        '200':
+          description: Personalised next-up content
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Recommendation' }
+
+components:
+  securitySchemes:
+    studentAuth: { type: openIdConnect, openIdConnectUrl: https://keycloak.scholarpath.io/realms/scholarpath/.well-known/openid-configuration }
+  schemas:
+    Health:
+      type: object
+      properties: { status: { type: string }, service: { type: string } }
+    CourseSummary:
+      type: object
+      properties:
+        course_id:    { type: string }
+        title:        { type: string, x-language: en }
+        instructor:   { type: string }
+        progress_pct: { type: number, format: float, minimum: 0, maximum: 100 }
+    SubmissionRequest:
+      type: object
+      required: [content_uri]
+      properties:
+        content_uri:  { type: string, format: uri }
+        comment:      { type: string, x-language: en }
+    Submission:
+      type: object
+      properties:
+        submission_id: { type: string }
+        status:        { type: string, enum: [submitted, late, graded, returned] }
+        submitted_at:  { type: string, format: date-time }
+    Recommendation:
+      type: object
+      properties:
+        lesson_id:    { type: string }
+        title:        { type: string, x-language: en }
+        rationale:    { type: string, x-language: en }
+        rank:         { type: integer }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:    { type: string }
+        message: { type: string, x-language: en }
+        details: { type: object }
+  responses:
+    Error: { description: Error response, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }

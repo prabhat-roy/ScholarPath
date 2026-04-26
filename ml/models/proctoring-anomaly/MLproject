@@ -1,0 +1,11 @@
+name: proctoring-anomaly
+conda_env: conda.yaml
+
+entry_points:
+  train:
+    parameters:
+      labelled_clips: { type: string, default: "s3://scholarpath-mlflow-artifacts/proctoring/labelled" }
+    command: "python train.py --clips {labelled_clips}"
+  serve:
+    # Inference runs ON-PREM (GPU nodes) - raw video must NOT leave the cluster.
+    command: "python serve.py --port 8082"

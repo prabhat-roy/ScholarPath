@@ -1,0 +1,5 @@
+cloud: { provider: gcp, storageClass: pd-balanced, ingressClass: gce }
+serviceAccount:
+  annotations:
+    iam.gke.io/gcp-service-account: scholarpath-parent-bff@{{ .Values.gcp.project }}.iam.gserviceaccount.com
+envFrom: [{ secretRef: { name: parent-bff-gcp-secrets } }]

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: lms-service, namespace: scholarpath }
+spec:
+  replicas: 4
+  strategy:
+    canary:
+      steps:
+        - setWeight: 10
+        - pause: { duration: 5m }
+        - analysis:
+            templates: [{ templateName: scholarpath-canary-analysis }]
+            args: [{ name: service-name, value: lms-service }]
+        - setWeight: 50
+        - pause: { duration: 5m }
+        - setWeight: 100
+  selector: { matchLabels: { app.kubernetes.io/name: lms-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: lms-service } }
+    spec:
+      containers:
+        - name: lms-service
+          image: harbor.scholarpath.internal/scholarpath/lms-service:0.1.0
+          ports: [{ containerPort: 50500 }]

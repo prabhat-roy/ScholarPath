@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: ScholarPath Teacher API
+  version: 0.1.0
+  description: |
+    Teacher-facing API (React teacher dashboard). Grade-changing endpoints
+    REQUIRE a `reason` field; every change is captured in the FERPA grade-audit
+    ledger with the grader's identity.
+servers:
+  - { url: https://api.scholarpath.io }
+paths:
+  /v1/teacher/courses/{courseId}/gradebook:
+    get:
+      tags: [gradebook]
+      operationId: getGradebook
+      security: [{ teacherAuth: [] }]
+      parameters:
+        - { in: path, name: courseId, required: true, schema: { type: string } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Gradebook' } } } }
+        '403': { $ref: '#/components/responses/Error' }
+
+  /v1/teacher/submissions/{submissionId}/grade:
+    post:
+      tags: [grading]
+      operationId: gradeSubmission
+      security: [{ teacherAuth: [] }]
+      parameters:
+        - { in: path, name: submissionId, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GradeRequest' }
+      responses:
+        '200': { description: Graded, content: { application/json: { schema: { $ref: '#/components/schemas/Grade' } } } }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+
+  /v1/teacher/at-risk:
+    get:
+      tags: [analytics]
+      operationId: listAtRiskStudents
+      security: [{ teacherAuth: [] }]
+      description: Pulls early-intervention model output for students in the teacher's courses.
+      responses:
+        '200':
+          description: At-risk list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/AtRiskStudent' }
+
+components:
+  securitySchemes:
+    teacherAuth: { type: openIdConnect, openIdConnectUrl: https://keycloak.scholarpath.io/realms/scholarpath/.well-known/openid-configuration }
+  schemas:
+    Gradebook:
+      type: object
+      properties:
+        course_id: { type: string }
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              student_token: { type: string, description: "FERPA: tokenised reference, never raw student_id" }
+              assignment_id: { type: string }
+              score:         { type: number }
+              graded_at:     { type: string, format: date-time }
+    GradeRequest:
+      type: object
+      required: [score, reason]
+      properties:
+        score:  { type: number }
+        reason: { type: string, x-language: en, description: "Mandatory FERPA justification for the grade override" }
+    Grade:
+      type: object
+      properties:
+        submission_id: { type: string }
+        score:         { type: number }
+        graded_at:     { type: string, format: date-time }
+        audit_id:      { type: string, description: "FERPA grade-audit row id" }
+    AtRiskStudent:
+      type: object
+      properties:
+        student_token: { type: string }
+        risk_score:    { type: number, format: float, minimum: 0, maximum: 1 }
+        top_reasons:   { type: array, items: { type: string, x-language: en } }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:    { type: string }
+        message: { type: string, x-language: en }
+  responses:
+    Error: { description: Error response, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }

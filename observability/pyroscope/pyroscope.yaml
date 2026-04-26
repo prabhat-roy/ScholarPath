@@ -1,0 +1,5 @@
+server:
+  http_listen_port: 4040
+storage:
+  backend: s3
+  s3: { bucket_name: scholarpath-pyroscope, endpoint: s3.amazonaws.com, region: us-east-1 }

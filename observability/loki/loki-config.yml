@@ -1,0 +1,19 @@
+auth_enabled: false
+server: { http_listen_port: 3100 }
+ingester:
+  lifecycler: { ring: { kvstore: { store: inmemory }, replication_factor: 1 } }
+  chunk_idle_period: 30m
+  max_chunk_age: 1h
+schema_config:
+  configs:
+    - from: 2026-01-01
+      store: tsdb
+      object_store: s3
+      schema: v13
+      index: { prefix: scholarpath_, period: 24h }
+storage_config:
+  aws: { s3: scholarpath-loki, region: us-east-1 }
+limits_config:
+  retention_period: 8760h     # 1 year for FERPA audit retention
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h

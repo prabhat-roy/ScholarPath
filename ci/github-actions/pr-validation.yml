@@ -1,0 +1,41 @@
+name: pr-validation
+on:
+  pull_request:
+    branches: [main]
+permissions: { contents: read, security-events: write, pull-requests: read }
+jobs:
+  lint-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Hadolint
+        uses: hadolint/hadolint-action@v3
+        with: { recursive: true }
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+      - name: Trivy FS
+        uses: aquasecurity/trivy-action@master
+        with: { scan-type: fs, severity: CRITICAL,HIGH }
+      - name: Semgrep
+        uses: semgrep/semgrep-action@v1
+      - name: Spectral OpenAPI lint (incl. WCAG accessibility checks)
+        run: |
+          npm i -g @stoplight/spectral-cli
+          spectral lint openapi/*.yaml --ruleset api-testing/spectral/.spectral.yaml
+      - name: axe-core a11y (frontends)
+        run: |
+          # Frontends are scaffolded later; this step is a placeholder that
+          # passes when no frontend exists, and runs axe-core when they do.
+          if [ -d "frontends" ]; then
+            npm i -g @axe-core/cli
+            axe https://staging.scholarpath.io --exit
+          fi
+      - name: CodeQL init
+        uses: github/codeql-action/init@v3
+        with: { languages: 'go,java,javascript,python' }
+      - name: CodeQL analyze
+        uses: github/codeql-action/analyze@v3
+      - name: OpenSSF Scorecard
+        uses: ossf/scorecard-action@v2
+        with: { results_file: scorecard.sarif, results_format: sarif }

@@ -1,0 +1,11 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata: { name: scholarpath, namespace: scholarpath }
+spec:
+  entryPoints: [websecure]
+  routes:
+    - match: Host(`api.scholarpath.io`)
+      kind: Rule
+      services: [{ name: api-gateway, port: 50000 }]
+      middlewares: [{ name: scholarpath-rate-limit }, { name: scholarpath-headers }]
+  tls: { secretName: scholarpath-tls }

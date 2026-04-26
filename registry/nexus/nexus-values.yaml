@@ -1,0 +1,3 @@
+nexus:
+  hostname: nexus.scholarpath.internal
+  storage: { size: 500Gi, storageClass: gp3 }

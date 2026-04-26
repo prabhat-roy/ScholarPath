@@ -1,0 +1,11 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: { name: api-gateway, namespace: scholarpath }
+spec:
+  hosts: [api.scholarpath.io]
+  gateways: [istio-system/scholarpath]
+  http:
+    - route:
+        - destination: { host: api-gateway, port: { number: 50000 } }
+      retries: { attempts: 3, perTryTimeout: 2s, retryOn: 5xx }
+      timeout: 30s

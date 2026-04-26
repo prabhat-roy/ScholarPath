@@ -1,0 +1,15 @@
+image: { repository: scholarpath/graphql-gateway, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 2
+service: { type: ClusterIP, port: 50006, targetPort: 50006 }
+resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 1000m, memory: 512Mi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50006 }, initialDelaySeconds: 15 }
+  readiness: { httpGet: { path: /healthz, port: 50006 }, initialDelaySeconds: 5 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: graphql-gateway, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: platform }
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info }
+cloud: { provider: "" }

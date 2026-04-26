@@ -1,0 +1,11 @@
+{
+  "name": "scholarpath-api-lint",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "spectral lint ../../openapi/*.yaml --ruleset .spectral.yaml"
+  },
+  "devDependencies": {
+    "@stoplight/spectral-cli": "^6.13.1"
+  }
+}

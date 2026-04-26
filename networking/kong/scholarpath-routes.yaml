@@ -1,0 +1,7 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: scholarpath-jwt, namespace: scholarpath }
+plugin: jwt
+config:
+  uri_param_names: [jwt]
+  cookie_names: [jwt]

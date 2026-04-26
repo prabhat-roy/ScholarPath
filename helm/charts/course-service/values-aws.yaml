@@ -1,0 +1,3 @@
+cloud: { provider: aws }
+serviceAccount: { annotations: { eks.amazonaws.com/role-arn: "arn:aws:iam::{{ .Values.aws.accountId }}:role/scholarpath-course-service" } }
+envFrom: [{ secretRef: { name: course-service-aws-secrets } }]

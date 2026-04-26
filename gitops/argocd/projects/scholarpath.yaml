@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: scholarpath
+  namespace: argocd
+spec:
+  description: ScholarPath learning + virtual classroom platform
+  sourceRepos:
+    - https://github.com/prabhat-roy/ScholarPath.git
+  destinations:
+    - { namespace: scholarpath, server: https://kubernetes.default.svc }
+    - { namespace: scholarpath-*, server: https://kubernetes.default.svc }
+  clusterResourceWhitelist:
+    - { group: '*', kind: '*' }
+  namespaceResourceWhitelist:
+    - { group: '*', kind: '*' }

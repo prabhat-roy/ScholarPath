@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: scholarpath-gcp
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/prabhat-roy/ScholarPath.git
+        revision: HEAD
+        directories:
+          - path: helm/charts/*
+  template:
+    metadata:
+      name: '{{path.basename}}-gcp'
+      labels: { cloud: gcp, scholarpath.io/managed-by: argocd }
+    spec:
+      project: scholarpath
+      source:
+        repoURL: https://github.com/prabhat-roy/ScholarPath.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles: [values.yaml, values-gcp.yaml]
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: scholarpath
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true, ServerSideApply=true]

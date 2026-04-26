@@ -1,0 +1,4 @@
+cloud: { provider: azure }
+nodeSelector: { "scholarpath.io/workload": "live-classroom" }
+serviceAccount: { annotations: { azure.workload.identity/client-id: "{{ .Values.azure.clientId }}" } }
+envFrom: [{ secretRef: { name: virtual-classroom-azure-secrets } }]

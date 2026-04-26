@@ -1,0 +1,11 @@
+name: scholarpath
+version: 1.0.0
+profile: scholarpath
+model-paths: [models]
+target-path: target
+clean-targets: [target, dbt_packages]
+
+models:
+  scholarpath:
+    staging:    { +materialized: view }
+    analytics:  { +materialized: incremental, +on_schema_change: append_new_columns }

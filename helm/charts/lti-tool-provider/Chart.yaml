@@ -1,0 +1,6 @@
+apiVersion: v2
+name: lti-tool-provider
+description: ScholarPath as an LTI 1.3 Tool (provider side)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

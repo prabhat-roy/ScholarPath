@@ -1,0 +1,11 @@
+exposureType: ingress
+expose:
+  ingress:
+    hosts: { core: harbor.scholarpath.internal }
+    annotations: { kubernetes.io/ingress.class: traefik }
+externalURL: https://harbor.scholarpath.internal
+persistence:
+  persistentVolumeClaim:
+    registry: { storageClass: gp3, size: 2Ti }
+trivy: { enabled: true }
+chartmuseum: { enabled: true }

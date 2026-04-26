@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package scholarpath.enrolment.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.scholarpath.enrolment.v1";
+option java_multiple_files = true;
+
+// admission-service: Application intake, scoring, offer/decline flows.
+service AdmissionService {
+  rpc Health(HealthRequest) returns (HealthResponse);
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string status = 1;
+  string version = 2;
+  google.protobuf.Timestamp checked_at = 3;
+}

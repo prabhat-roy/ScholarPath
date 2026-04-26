@@ -1,0 +1,22 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: { name: scholarpath-default-deny, namespace: scholarpath }
+spec: { action: DENY, rules: [{}] }
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: { name: allow-from-platform, namespace: scholarpath }
+spec:
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/scholarpath/sa/api-gateway
+              - cluster.local/ns/scholarpath/sa/student-bff
+              - cluster.local/ns/scholarpath/sa/teacher-bff
+              - cluster.local/ns/scholarpath/sa/parent-bff
+              - cluster.local/ns/scholarpath/sa/admin-bff
+              - cluster.local/ns/scholarpath/sa/mobile-bff
+              - cluster.local/ns/scholarpath/sa/graphql-gateway
+              - cluster.local/ns/scholarpath/sa/lti-tool-provider

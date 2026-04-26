@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: { name: lti-tool-provider, namespace: scholarpath }
+spec:
+  hosts: [lti.scholarpath.io]
+  gateways: [istio-system/scholarpath]
+  http:
+    - route:
+        - destination: { host: lti-tool-provider, port: { number: 50007 } }
+      timeout: 15s

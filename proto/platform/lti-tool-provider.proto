@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package scholarpath.platform.v1;
+
+import "scholarpath/common/v1/lti.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.scholarpath.platform.v1";
+option java_multiple_files = true;
+
+// lti-tool-provider: ScholarPath as an LTI 1.3 Tool (provider side).
+service LtiToolProviderService {
+  rpc Health(HealthRequest) returns (HealthResponse);
+  rpc OpenIdConnectLogin(OidcLoginRequest) returns (OidcLoginResponse);
+  rpc Launch(scholarpath.common.v1.LtiLaunch) returns (LaunchResponse);
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string status = 1;
+  string version = 2;
+  google.protobuf.Timestamp checked_at = 3;
+}
+
+message OidcLoginRequest {
+  string iss = 1;
+  string login_hint = 2;
+  string target_link_uri = 3;
+  string lti_message_hint = 4;
+}
+
+message OidcLoginResponse {
+  string redirect_url = 1;
+  string state = 2;
+  string nonce = 3;
+}
+
+message LaunchResponse {
+  string session_id = 1;
+  string redirect_url = 2;
+}

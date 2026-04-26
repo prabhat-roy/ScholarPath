@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: lms-service, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: lms }
+spec:
+  replicas: 3
+  selector: { matchLabels: { app.kubernetes.io/name: lms-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: lms-service, scholarpath.io/domain: lms } }
+    spec:
+      serviceAccountName: lms-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: lms-service
+          image: harbor.scholarpath.internal/scholarpath/lms-service:latest
+          ports: [{ containerPort: 50500, name: http }]
+          envFrom: [{ configMapRef: { name: lms-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 30 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 200m, memory: 512Mi }
+            limits:   { cpu: 2000m, memory: 2Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

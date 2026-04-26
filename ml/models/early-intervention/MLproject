@@ -1,0 +1,10 @@
+name: early-intervention
+conda_env: conda.yaml
+
+entry_points:
+  train:
+    parameters:
+      features_table: { type: string, default: "scholarpath_analytics.daily_completion" }
+    command: "python train.py --table {features_table}"
+  predict:
+    command: "python predict.py"

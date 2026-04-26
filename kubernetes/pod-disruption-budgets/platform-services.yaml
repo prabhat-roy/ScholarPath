@@ -1,0 +1,28 @@
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: api-gateway, namespace: scholarpath }
+spec:
+  minAvailable: 2
+  selector: { matchLabels: { app.kubernetes.io/name: api-gateway } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: lms-service, namespace: scholarpath }
+spec:
+  minAvailable: 2
+  selector: { matchLabels: { app.kubernetes.io/name: lms-service } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: virtual-classroom, namespace: scholarpath }
+spec:
+  minAvailable: 2
+  selector: { matchLabels: { app.kubernetes.io/name: virtual-classroom } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: exam-service, namespace: scholarpath }
+spec:
+  minAvailable: 3   # exam-service must stay highly available during exam windows
+  selector: { matchLabels: { app.kubernetes.io/name: exam-service } }

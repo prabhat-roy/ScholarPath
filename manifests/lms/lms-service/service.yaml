@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lms-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: lms-service, scholarpath.io/domain: lms }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50500, targetPort: 50500 }]
+  selector: { app.kubernetes.io/name: lms-service }

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package scholarpath.common.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.scholarpath.common.v1";
+option java_multiple_files = true;
+
+// Money - fixed-point monetary amount in minor units of the currency.
+message Money {
+  string currency_code = 1;  // ISO 4217 (e.g. "USD", "EUR", "INR")
+  int64 minor_units = 2;
+}
+
+// Pagination - request side.
+message PageRequest {
+  int32 size = 1;
+  string page_token = 2;
+}
+
+// Pagination - response side.
+message PageResponse {
+  string next_page_token = 1;
+  int64 total_size = 2;
+}
+
+// AuditMetadata - captured on every privileged write (grade change, exam grade override, fee waiver).
+message AuditMetadata {
+  string actor_id = 1;
+  string actor_role = 2;   // student | teacher | parent | admin | counsellor | system
+  string ip_address = 3;
+  string user_agent = 4;
+  google.protobuf.Timestamp event_time = 5;
+  string reason = 6;       // FERPA: every grade change must carry a justification
+}
+
+// CoppaConsentToken - signed parental consent for under-13 student data flows.
+message CoppaConsentToken {
+  string id = 1;
+  string parent_subject = 2;       // parent's identity subject
+  string student_token = 3;        // StudentRef token of the minor
+  google.protobuf.Timestamp issued_at = 4;
+  google.protobuf.Timestamp expires_at = 5;
+  repeated string scopes = 6;      // e.g. ["learning.read","communications.send"]
+}

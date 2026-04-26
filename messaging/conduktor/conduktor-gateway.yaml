@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: conduktor-config, namespace: kafka }
+data:
+  config.yaml: |
+    interceptors:
+      - name: schema-validation
+        config: { allowedNamespaces: ["io.scholarpath.*"] }
+      - name: pii-mask
+        config: { fields: [student_id, student_email, parent_email, phone, national_id] }
+      - name: rate-limit
+        config:
+          perPrincipal: { producer: 10000, consumer: 50000 }

@@ -1,0 +1,4 @@
+cloud: { provider: gcp }
+nodeSelector: { "scholarpath.io/workload": "live-classroom" }
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: "scholarpath-virtual-classroom@{{ .Values.gcp.project }}.iam.gserviceaccount.com" } }
+envFrom: [{ secretRef: { name: virtual-classroom-gcp-secrets } }]

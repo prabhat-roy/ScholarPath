@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exam-service
+  namespace: scholarpath
+  labels: { app.kubernetes.io/name: exam-service, app.kubernetes.io/part-of: scholarpath, scholarpath.io/domain: assessment }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app.kubernetes.io/name: exam-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: exam-service, scholarpath.io/domain: assessment } }
+    spec:
+      serviceAccountName: exam-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: exam-service
+          image: harbor.scholarpath.internal/scholarpath/exam-service:latest
+          ports: [{ containerPort: 50600, name: http }]
+          envFrom: [{ configMapRef: { name: exam-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50600 }, initialDelaySeconds: 30 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50600 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 200m, memory: 256Mi }
+            limits:   { cpu: 1500m, memory: 1Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

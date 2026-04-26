@@ -1,0 +1,6 @@
+apiVersion: v2
+name: virtual-classroom
+description: Live class signalling on top of MediaSoup SFU + Jitsi
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

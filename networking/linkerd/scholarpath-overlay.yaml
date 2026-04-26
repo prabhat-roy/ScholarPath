@@ -1,0 +1,2 @@
+identity: { trustDomain: scholarpath.internal }
+proxyInjector: { ignoreInboundPorts: ["4191"] }

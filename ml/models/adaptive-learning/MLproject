@@ -1,0 +1,11 @@
+name: adaptive-learning-irt
+conda_env: conda.yaml
+
+entry_points:
+  train:
+    parameters:
+      data_path: { type: string, default: "s3://scholarpath-mlflow-artifacts/raw/xapi" }
+      model_out: { type: string, default: "s3://scholarpath-mlflow-artifacts/models/adaptive-learning-irt" }
+    command: "python train.py --data {data_path} --out {model_out}"
+  serve:
+    command: "python serve.py --port 8080"

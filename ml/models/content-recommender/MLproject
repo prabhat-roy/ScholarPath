@@ -1,0 +1,11 @@
+name: content-recommender
+conda_env: conda.yaml
+
+entry_points:
+  train:
+    parameters:
+      neo4j_uri: { type: string, default: "bolt://neo4j.databases:7687" }
+      content_corpus_path: { type: string, default: "s3://scholarpath-mlflow-artifacts/corpus/lessons" }
+    command: "python train.py --neo4j {neo4j_uri} --corpus {content_corpus_path}"
+  serve:
+    command: "python serve.py --port 8081"

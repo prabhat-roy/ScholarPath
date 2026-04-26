@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-teacher-bff
+  labels:
+    app.kubernetes.io/name: teacher-bff
+    app.kubernetes.io/part-of: scholarpath
+    scholarpath.io/domain: platform
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector: { matchLabels: { app.kubernetes.io/name: teacher-bff } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: teacher-bff, scholarpath.io/domain: platform }
+    spec:
+      serviceAccountName: {{ .Release.Name }}-teacher-bff
+      securityContext: {{- toYaml .Values.securityContext | nindent 8 }}
+      containers:
+        - name: teacher-bff
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports: [{ name: http, containerPort: {{ .Values.service.targetPort }} }]
+          env:
+            - { name: PORT, value: "{{ .Values.service.targetPort }}" }
+            {{- range $k, $v := .Values.config }}
+            - { name: {{ $k }}, value: "{{ $v }}" }
+            {{- end }}
+          {{- with .Values.envFrom }}
+          envFrom: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe: {{- toYaml .Values.probes.liveness | nindent 12 }}
+          readinessProbe: {{- toYaml .Values.probes.readiness | nindent 12 }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}

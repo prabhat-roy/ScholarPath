@@ -1,0 +1,5 @@
+cloud: { provider: aws }
+# Live classroom needs GPU nodes (proctoring AI co-located in some deployments).
+nodeSelector: { "scholarpath.io/workload": "live-classroom" }
+serviceAccount: { annotations: { eks.amazonaws.com/role-arn: "arn:aws:iam::{{ .Values.aws.accountId }}:role/scholarpath-virtual-classroom" } }
+envFrom: [{ secretRef: { name: virtual-classroom-aws-secrets } }]

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package scholarpath.fees.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.scholarpath.fees.v1";
+option java_multiple_files = true;
+
+// invoice-service: Invoice generation + delivery.
+service InvoiceService {
+  rpc Health(HealthRequest) returns (HealthResponse);
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string status = 1;
+  string version = 2;
+  google.protobuf.Timestamp checked_at = 3;
+}

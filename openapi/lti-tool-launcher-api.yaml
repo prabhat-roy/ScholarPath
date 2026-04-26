@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: ScholarPath LTI 1.3 Tool Launcher API
+  version: 0.1.0
+  description: |
+    Implements the IMS LTI 1.3 platform-side endpoints for launching external
+    tools (publishers, simulations, calculators). All launches go through the
+    `scholarpath.lti` OPA policy which validates iss / aud / deployment_id /
+    nonce / exp / message_type / role claims before issuing the id_token.
+servers:
+  - { url: https://lti.scholarpath.io }
+paths:
+  /lti/login:
+    post:
+      tags: [lti]
+      operationId: ltiOidcLogin
+      description: LTI 1.3 third-party initiated login (OIDC).
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema: { $ref: '#/components/schemas/OidcLoginRequest' }
+      responses:
+        '302': { description: "Redirect to platform auth endpoint" }
+        '400': { $ref: '#/components/responses/Error' }
+
+  /lti/launch:
+    post:
+      tags: [lti]
+      operationId: ltiLaunch
+      description: LTI 1.3 resource link launch. id_token is verified against the configured platform JWKS.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [id_token, state]
+              properties:
+                id_token: { type: string, description: "Signed JWT from the platform" }
+                state:    { type: string }
+      responses:
+        '200': { description: Launched, content: { application/json: { schema: { $ref: '#/components/schemas/LaunchResult' } } } }
+        '403': { $ref: '#/components/responses/Error' }
+
+  /lti/jwks:
+    get:
+      tags: [lti]
+      operationId: ltiToolJwks
+      description: Public JWKS for ScholarPath as a tool (used by platforms to verify tool-issued JWTs).
+      responses:
+        '200':
+          description: JWKS
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Jwks' }
+
+  /lti/deep-linking/return:
+    post:
+      tags: [lti]
+      operationId: ltiDeepLinkingReturn
+      description: Receives a Deep Linking response from a tool and persists the chosen content items.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [JWT]
+              properties:
+                JWT: { type: string }
+      responses:
+        '200': { description: OK }
+        '403': { $ref: '#/components/responses/Error' }
+
+components:
+  schemas:
+    OidcLoginRequest:
+      type: object
+      required: [iss, login_hint, target_link_uri]
+      properties:
+        iss:              { type: string, format: uri }
+        login_hint:       { type: string }
+        target_link_uri:  { type: string, format: uri }
+        lti_message_hint: { type: string }
+    LaunchResult:
+      type: object
+      properties:
+        session_id:   { type: string }
+        redirect_url: { type: string, format: uri }
+    Jwks:
+      type: object
+      properties:
+        keys: { type: array, items: { type: object } }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:    { type: string }
+        message: { type: string, x-language: en }
+  responses:
+    Error: { description: Error response, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }

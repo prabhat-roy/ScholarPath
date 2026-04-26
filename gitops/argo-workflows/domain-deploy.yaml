@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: { name: scholarpath-domain-deploy, namespace: argo }
+spec:
+  entrypoint: deploy
+  arguments:
+    parameters:
+      - { name: domain }
+      - { name: cloud }
+      - { name: version }
+  templates:
+    - name: deploy
+      steps:
+        - - { name: status-page,    template: cachet-update }
+        - - { name: db-migration,   template: flyway-migrate }
+        - - { name: helm-upgrade,   template: helm }
+        - - { name: smoke-tests,    template: hurl-smoke }
+        - - { name: a11y-axe,       template: axe-core }
+    - name: cachet-update
+      container: { image: scholarpath/jenkins-agent:latest }
+    - name: flyway-migrate
+      container: { image: flyway/flyway:10 }
+    - name: helm
+      container: { image: alpine/helm:3.16 }
+    - name: hurl-smoke
+      container: { image: ghcr.io/orange-opensource/hurl:5.0.1 }
+    - name: axe-core
+      container: { image: deque/axe-cli:latest, command: ["axe","https://staging.scholarpath.io"] }

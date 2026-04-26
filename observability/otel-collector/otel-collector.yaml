@@ -1,0 +1,30 @@
+receivers:
+  otlp:
+    protocols:
+      grpc: { endpoint: 0.0.0.0:4317 }
+      http: { endpoint: 0.0.0.0:4318 }
+
+processors:
+  batch: {}
+  resource:
+    attributes:
+      - { key: deployment.environment, value: ${ENV},   action: upsert }
+      - { key: cloud.provider,         value: ${CLOUD}, action: upsert }
+  # FERPA + COPPA: hash PII fields before they leave the cluster.
+  attributes/pii:
+    actions:
+      - { key: student_id,    action: hash }
+      - { key: student_email, action: hash }
+      - { key: parent_email,  action: hash }
+      - { key: phone,         action: hash }
+
+exporters:
+  otlp/tempo: { endpoint: tempo:4317, tls: { insecure: true } }
+  prometheus: { endpoint: 0.0.0.0:9464 }
+  loki:       { endpoint: http://loki:3100/loki/api/v1/push }
+
+service:
+  pipelines:
+    traces:  { receivers: [otlp], processors: [attributes/pii, resource, batch], exporters: [otlp/tempo] }
+    metrics: { receivers: [otlp], processors: [resource, batch],                 exporters: [prometheus] }
+    logs:    { receivers: [otlp], processors: [attributes/pii, resource, batch], exporters: [loki] }

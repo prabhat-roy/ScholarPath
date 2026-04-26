@@ -1,0 +1,15 @@
+# xAPI events spike during exam windows + lecture starts. KEDA scales the LRS ingester.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: xapi-ingester, namespace: scholarpath }
+spec:
+  scaleTargetRef: { name: xapi-ingester }
+  minReplicaCount: 3
+  maxReplicaCount: 50
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.messaging:9092
+        consumerGroup: xapi-ingester
+        topic: xapi.statement.recorded
+        lagThreshold: "500"

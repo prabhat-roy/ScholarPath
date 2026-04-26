@@ -1,0 +1,32 @@
+groups:
+  - name: scholarpath-classroom-and-exams
+    rules:
+      - alert: VirtualClassroomLatencyHigh
+        expr: histogram_quantile(0.99, sum by (le) (rate(virtual_classroom_signal_duration_seconds_bucket[2m]))) > 0.5
+        for: 5m
+        labels: { severity: critical, team: classroom }
+        annotations: { summary: "Live classroom signalling p99 >500ms - investigate SFU / NATS" }
+
+      - alert: ExamSubmissionFailureSpike
+        expr: increase(exam_submission_failure_total[5m]) > 5
+        for: 5m
+        labels: { severity: critical, team: assessment }
+        annotations: { summary: "Exam submissions failing - exam window in progress, page on-call now" }
+
+      - alert: XApiIngestLagHigh
+        expr: kafka_consumergroup_lag{topic="xapi.statement.recorded"} > 10000
+        for: 5m
+        labels: { severity: warning, team: analytics }
+        annotations: { summary: "xAPI LRS ingester lagging >10k statements" }
+
+      - alert: ProctoringAnomalyBurst
+        expr: increase(proctoring_flagged_event_total[10m]) > 100
+        for: 10m
+        labels: { severity: warning, team: assessment }
+        annotations: { summary: "Sudden burst of proctoring anomalies - investigate exam integrity" }
+
+      - alert: AdaptiveLearningInferenceLatency
+        expr: histogram_quantile(0.95, sum by (le) (rate(adaptive_learning_inference_seconds_bucket[5m]))) > 0.3
+        for: 10m
+        labels: { severity: warning, team: analytics }
+        annotations: { summary: "Adaptive learning inference p95 >300ms - check GPU node pressure" }

@@ -1,0 +1,35 @@
+# JetStream streams owned by the live-classroom subsystem.
+# Declared declaratively for bootstrap; nack runtime usually creates these.
+apiVersion: jetstream.nats.io/v1beta2
+kind: Stream
+metadata: { name: classroom-signal, namespace: messaging }
+spec:
+  name: CLASSROOM_SIGNAL
+  subjects: ["classroom.signal.>"]
+  storage: file
+  retention: limits
+  maxAge: 24h          # short retention; signalling is ephemeral
+  replicas: 3
+  discard: old
+---
+apiVersion: jetstream.nats.io/v1beta2
+kind: Stream
+metadata: { name: classroom-whiteboard, namespace: messaging }
+spec:
+  name: CLASSROOM_WHITEBOARD
+  subjects: ["classroom.whiteboard.>"]
+  storage: file
+  retention: limits
+  maxAge: 7d           # whiteboard CRDT state replays for the week
+  replicas: 3
+---
+apiVersion: jetstream.nats.io/v1beta2
+kind: Stream
+metadata: { name: classroom-polling, namespace: messaging }
+spec:
+  name: CLASSROOM_POLLING
+  subjects: ["classroom.polling.>"]
+  storage: file
+  retention: limits
+  maxAge: 24h
+  replicas: 3

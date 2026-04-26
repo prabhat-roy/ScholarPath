@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package scholarpath.platform.v1;
+
+import "scholarpath/common/v1/lti.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.scholarpath.platform.v1";
+option java_multiple_files = true;
+
+// lti-tool-consumer: ScholarPath as an LTI 1.3 Platform (consumer side).
+service LtiToolConsumerService {
+  rpc Health(HealthRequest) returns (HealthResponse);
+  rpc IssueLaunch(IssueLaunchRequest) returns (scholarpath.common.v1.LtiLaunch);
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string status = 1;
+  string version = 2;
+  google.protobuf.Timestamp checked_at = 3;
+}
+
+message IssueLaunchRequest {
+  string deployment_id = 1;
+  string user_subject = 2;
+  string resource_link_id = 3;
+  repeated string roles = 4;
+}

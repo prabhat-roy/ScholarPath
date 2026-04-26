@@ -1,0 +1,34 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: scholarpath-default
+  group_by: [app, severity]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+  routes:
+    - matchers: [severity="critical"]
+      receiver: pagerduty-scholarpath
+      continue: true
+    - matchers: [team=~".+"]
+      receiver: slack-team-channel
+      group_by: [team]
+
+receivers:
+  - name: scholarpath-default
+    slack_configs:
+      - api_url: ${SLACK_WEBHOOK}
+        channel: '#scholarpath-alerts'
+  - name: pagerduty-scholarpath
+    pagerduty_configs:
+      - service_key: ${PAGERDUTY_KEY}
+  - name: slack-team-channel
+    slack_configs:
+      - api_url: ${SLACK_WEBHOOK}
+        channel: '#scholarpath-{{ .CommonLabels.team }}'
+
+inhibit_rules:
+  - source_matchers: [severity="critical"]
+    target_matchers: [severity="warning"]
+    equal: [app]
