@@ -1,8 +1,8 @@
-# student-bff
+﻿# student-bff
 
 BFF for student portal (Next.js)
 
-**Domain:** `platform` - **Language:** go - **Port:** 50001
+Domain: `platform` - Language: go - Port: 50001
 
 ## Run locally
 

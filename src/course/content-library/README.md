@@ -1,8 +1,8 @@
-# content-library
+﻿# content-library
 
-Service in the **course** domain of ScholarPath.
+Service in the course domain of ScholarPath.
 
-**Language:** Go · **Port:** 50061
+Language: Go Â· Port: 50061
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/content-library/](../../../helm/charts/content-library/) — Helm chart
-- [manifests/course/content-library/](../../../manifests/course/content-library/) — Raw K8s manifests
+- [helm/charts/content-library/](../../../helm/charts/content-library/) â€” Helm chart
+- [manifests/course/content-library/](../../../manifests/course/content-library/) â€” Raw K8s manifests

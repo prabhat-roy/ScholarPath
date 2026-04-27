@@ -1,8 +1,8 @@
-# recommendation-service
+﻿# recommendation-service
 
-Service in the **progress** domain of ScholarPath.
+Service in the progress domain of ScholarPath.
 
-**Language:** Go · **Port:** 50162
+Language: Go Â· Port: 50162
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/recommendation-service/](../../../helm/charts/recommendation-service/) — Helm chart
-- [manifests/progress/recommendation-service/](../../../manifests/progress/recommendation-service/) — Raw K8s manifests
+- [helm/charts/recommendation-service/](../../../helm/charts/recommendation-service/) â€” Helm chart
+- [manifests/progress/recommendation-service/](../../../manifests/progress/recommendation-service/) â€” Raw K8s manifests

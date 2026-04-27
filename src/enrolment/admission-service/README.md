@@ -1,8 +1,8 @@
-# admission-service
+﻿# admission-service
 
-Service in the **enrolment** domain of ScholarPath.
+Service in the enrolment domain of ScholarPath.
 
-**Language:** Go · **Port:** 50040
+Language: Go Â· Port: 50040
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/admission-service/](../../../helm/charts/admission-service/) — Helm chart
-- [manifests/enrolment/admission-service/](../../../manifests/enrolment/admission-service/) — Raw K8s manifests
+- [helm/charts/admission-service/](../../../helm/charts/admission-service/) â€” Helm chart
+- [manifests/enrolment/admission-service/](../../../manifests/enrolment/admission-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# polling-service
+﻿# polling-service
 
-Service in the **classroom** domain of ScholarPath.
+Service in the classroom domain of ScholarPath.
 
-**Language:** Go · **Port:** 50082
+Language: Go Â· Port: 50082
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/polling-service/](../../../helm/charts/polling-service/) — Helm chart
-- [manifests/classroom/polling-service/](../../../manifests/classroom/polling-service/) — Raw K8s manifests
+- [helm/charts/polling-service/](../../../helm/charts/polling-service/) â€” Helm chart
+- [manifests/classroom/polling-service/](../../../manifests/classroom/polling-service/) â€” Raw K8s manifests

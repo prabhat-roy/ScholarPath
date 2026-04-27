@@ -1,8 +1,8 @@
-# rubric-service
+﻿# rubric-service
 
-Service in the **lms** domain of ScholarPath.
+Service in the lms domain of ScholarPath.
 
-**Language:** Go · **Port:** 50102
+Language: Go Â· Port: 50102
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/rubric-service/](../../../helm/charts/rubric-service/) — Helm chart
-- [manifests/lms/rubric-service/](../../../manifests/lms/rubric-service/) — Raw K8s manifests
+- [helm/charts/rubric-service/](../../../helm/charts/rubric-service/) â€” Helm chart
+- [manifests/lms/rubric-service/](../../../manifests/lms/rubric-service/) â€” Raw K8s manifests

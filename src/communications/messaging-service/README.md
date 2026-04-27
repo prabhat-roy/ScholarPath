@@ -1,8 +1,8 @@
-# messaging-service
+﻿# messaging-service
 
-Service in the **communications** domain of ScholarPath.
+Service in the communications domain of ScholarPath.
 
-**Language:** Go · **Port:** 50180
+Language: Go Â· Port: 50180
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/messaging-service/](../../../helm/charts/messaging-service/) — Helm chart
-- [manifests/communications/messaging-service/](../../../manifests/communications/messaging-service/) — Raw K8s manifests
+- [helm/charts/messaging-service/](../../../helm/charts/messaging-service/) â€” Helm chart
+- [manifests/communications/messaging-service/](../../../manifests/communications/messaging-service/) â€” Raw K8s manifests

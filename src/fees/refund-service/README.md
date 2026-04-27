@@ -1,8 +1,8 @@
-# refund-service
+﻿# refund-service
 
-Service in the **fees** domain of ScholarPath.
+Service in the fees domain of ScholarPath.
 
-**Language:** Go · **Port:** 50203
+Language: Go Â· Port: 50203
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/refund-service/](../../../helm/charts/refund-service/) — Helm chart
-- [manifests/fees/refund-service/](../../../manifests/fees/refund-service/) — Raw K8s manifests
+- [helm/charts/refund-service/](../../../helm/charts/refund-service/) â€” Helm chart
+- [manifests/fees/refund-service/](../../../manifests/fees/refund-service/) â€” Raw K8s manifests

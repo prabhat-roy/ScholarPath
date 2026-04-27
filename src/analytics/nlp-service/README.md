@@ -1,8 +1,8 @@
-# nlp-service
+﻿# nlp-service
 
-Service in the **analytics** domain of ScholarPath.
+Service in the analytics domain of ScholarPath.
 
-**Language:** Go · **Port:** 50263
+Language: Go Â· Port: 50263
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/nlp-service/](../../../helm/charts/nlp-service/) — Helm chart
-- [manifests/analytics/nlp-service/](../../../manifests/analytics/nlp-service/) — Raw K8s manifests
+- [helm/charts/nlp-service/](../../../helm/charts/nlp-service/) â€” Helm chart
+- [manifests/analytics/nlp-service/](../../../manifests/analytics/nlp-service/) â€” Raw K8s manifests

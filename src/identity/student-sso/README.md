@@ -1,8 +1,8 @@
-# student-sso
+﻿# student-sso
 
-Service in the **identity** domain of ScholarPath.
+Service in the identity domain of ScholarPath.
 
-**Language:** Go · **Port:** 50021
+Language: Go Â· Port: 50021
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/student-sso/](../../../helm/charts/student-sso/) — Helm chart
-- [manifests/identity/student-sso/](../../../manifests/identity/student-sso/) — Raw K8s manifests
+- [helm/charts/student-sso/](../../../helm/charts/student-sso/) â€” Helm chart
+- [manifests/identity/student-sso/](../../../manifests/identity/student-sso/) â€” Raw K8s manifests

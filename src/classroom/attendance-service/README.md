@@ -1,8 +1,8 @@
-# attendance-service
+﻿# attendance-service
 
-Service in the **classroom** domain of ScholarPath.
+Service in the classroom domain of ScholarPath.
 
-**Language:** Go · **Port:** 50083
+Language: Go Â· Port: 50083
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/attendance-service/](../../../helm/charts/attendance-service/) — Helm chart
-- [manifests/classroom/attendance-service/](../../../manifests/classroom/attendance-service/) — Raw K8s manifests
+- [helm/charts/attendance-service/](../../../helm/charts/attendance-service/) â€” Helm chart
+- [manifests/classroom/attendance-service/](../../../manifests/classroom/attendance-service/) â€” Raw K8s manifests

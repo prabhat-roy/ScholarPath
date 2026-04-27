@@ -1,8 +1,8 @@
-# parent-sso
+﻿# parent-sso
 
-Service in the **identity** domain of ScholarPath.
+Service in the identity domain of ScholarPath.
 
-**Language:** Go · **Port:** 50022
+Language: Go Â· Port: 50022
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/parent-sso/](../../../helm/charts/parent-sso/) — Helm chart
-- [manifests/identity/parent-sso/](../../../manifests/identity/parent-sso/) — Raw K8s manifests
+- [helm/charts/parent-sso/](../../../helm/charts/parent-sso/) â€” Helm chart
+- [manifests/identity/parent-sso/](../../../manifests/identity/parent-sso/) â€” Raw K8s manifests

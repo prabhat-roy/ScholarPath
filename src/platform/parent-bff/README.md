@@ -1,8 +1,8 @@
-# parent-bff
+﻿# parent-bff
 
 BFF for parent portal (React)
 
-**Domain:** `platform` - **Language:** go - **Port:** 50003
+Domain: `platform` - Language: go - Port: 50003
 
 ## Endpoints
 

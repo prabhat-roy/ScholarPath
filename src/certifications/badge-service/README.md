@@ -1,8 +1,8 @@
-# badge-service
+﻿# badge-service
 
-Service in the **certifications** domain of ScholarPath.
+Service in the certifications domain of ScholarPath.
 
-**Language:** Go · **Port:** 50140
+Language: Go Â· Port: 50140
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/badge-service/](../../../helm/charts/badge-service/) — Helm chart
-- [manifests/certifications/badge-service/](../../../manifests/certifications/badge-service/) — Raw K8s manifests
+- [helm/charts/badge-service/](../../../helm/charts/badge-service/) â€” Helm chart
+- [manifests/certifications/badge-service/](../../../manifests/certifications/badge-service/) â€” Raw K8s manifests

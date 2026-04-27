@@ -1,8 +1,8 @@
-# exam-service
+﻿# exam-service
 
-Service in the **assessment** domain of ScholarPath.
+Service in the assessment domain of ScholarPath.
 
-**Language:** Go · **Port:** 50120
+Language: Go Â· Port: 50120
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/exam-service/](../../../helm/charts/exam-service/) — Helm chart
-- [manifests/assessment/exam-service/](../../../manifests/assessment/exam-service/) — Raw K8s manifests
+- [helm/charts/exam-service/](../../../helm/charts/exam-service/) â€” Helm chart
+- [manifests/assessment/exam-service/](../../../manifests/assessment/exam-service/) â€” Raw K8s manifests

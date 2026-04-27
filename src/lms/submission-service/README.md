@@ -1,8 +1,8 @@
-# submission-service
+﻿# submission-service
 
-Service in the **lms** domain of ScholarPath.
+Service in the lms domain of ScholarPath.
 
-**Language:** Go · **Port:** 50101
+Language: Go Â· Port: 50101
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/submission-service/](../../../helm/charts/submission-service/) — Helm chart
-- [manifests/lms/submission-service/](../../../manifests/lms/submission-service/) — Raw K8s manifests
+- [helm/charts/submission-service/](../../../helm/charts/submission-service/) â€” Helm chart
+- [manifests/lms/submission-service/](../../../manifests/lms/submission-service/) â€” Raw K8s manifests

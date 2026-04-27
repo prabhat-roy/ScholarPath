@@ -1,5 +1,5 @@
-# config-service
+﻿# config-service
 
 Centralised dynamic configuration
 
-**Domain:** `platform` - **Language:** go - **Port:** 50011
+Domain: `platform` - Language: go - Port: 50011

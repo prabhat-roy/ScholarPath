@@ -1,8 +1,8 @@
-# ScholarPath — Enterprise Learning & Education Platform
+﻿# ScholarPath â€” Enterprise Learning & Education Platform
 
 Enterprise-grade, cloud-native education platform built on open source technologies.
-Covers the full learning lifecycle — student enrolment, live classes, LMS, assessments,
-certifications, parent engagement, and institutional analytics — designed for universities,
+Covers the full learning lifecycle â€” student enrolment, live classes, LMS, assessments,
+certifications, parent engagement, and institutional analytics â€” designed for universities,
 K-12 school networks, online course providers, and corporate training platforms.
 FERPA and COPPA compliant.
 
@@ -51,34 +51,34 @@ FERPA and COPPA compliant.
 ## Architecture
 
 ```
-              ┌────────────────────────────────────────────┐
-              │               API Gateway                   │
-              │    (LTI 1.3 · OAuth2 · Rate Limit · WAF)   │
-              └──────┬──────────┬──────────┬───────────────┘
-                     │          │          │
-           ┌─────────▼─┐  ┌────▼──────┐  ┌▼──────────────┐
-           │Student BFF│  │Teacher BFF│  │  Parent BFF   │
-           │ (Next.js) │  │  (React)  │  │  (React)      │
-           └─────────┬─┘  └────┬──────┘  └┬──────────────┘
-                     │         │           │
-      ┌──────────────▼─────────▼───────────▼───────────────┐
-      │              Internal gRPC Mesh (Istio mTLS)        │
-      │  ┌──────────┐  ┌────────────┐  ┌────────────────┐  │
-      │  │  Course  │  │  Live      │  │  Assessment    │  │
-      │  │  & LMS   │  │  Classroom │  │  & Proctoring  │  │
-      │  └──────────┘  └────────────┘  └────────────────┘  │
-      └──────────────────────┬──────────────────────────────┘
-                             │ Kafka (xAPI Learning Events)
-                   ┌─────────▼──────────┐
-                   │  xAPI LRS           │
-                   │ (Learning Record    │
-                   │  Store — SCORM/xAPI)│
-                   └─────────┬──────────┘
-                             │
-         ┌───────────────────▼────────────────────────┐
-         │           Learning Analytics               │
-         │  ClickHouse · Spark · Airflow · Superset   │
-         └─────────────────────────────────────────────┘
+              â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+              â”‚               API Gateway                   â”‚
+              â”‚    (LTI 1.3 Â· OAuth2 Â· Rate Limit Â· WAF)   â”‚
+              â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚          â”‚          â”‚
+           â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”  â”Œâ”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”  â”Œâ–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+           â”‚Student BFFâ”‚  â”‚Teacher BFFâ”‚  â”‚  Parent BFF   â”‚
+           â”‚ (Next.js) â”‚  â”‚  (React)  â”‚  â”‚  (React)      â”‚
+           â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”˜  â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜  â””â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚         â”‚           â”‚
+      â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+      â”‚              Internal gRPC Mesh (Istio mTLS)        â”‚
+      â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚
+      â”‚  â”‚  Course  â”‚  â”‚  Live      â”‚  â”‚  Assessment    â”‚  â”‚
+      â”‚  â”‚  & LMS   â”‚  â”‚  Classroom â”‚  â”‚  & Proctoring  â”‚  â”‚
+      â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚
+      â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                             â”‚ Kafka (xAPI Learning Events)
+                   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                   â”‚  xAPI LRS           â”‚
+                   â”‚ (Learning Record    â”‚
+                   â”‚  Store â€” SCORM/xAPI)â”‚
+                   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                             â”‚
+         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+         â”‚           Learning Analytics               â”‚
+         â”‚  ClickHouse Â· Spark Â· Airflow Â· Superset   â”‚
+         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
@@ -86,56 +86,56 @@ FERPA and COPPA compliant.
 ## Tech Stack
 
 ### Education Standards
-- **LTI 1.3**: Deep integration with third-party tools (Turnitin, Zoom, Khan Academy) via IMS LTI 1.3
-- **xAPI (Tin Can)**: All learning events published as xAPI statements to Learning Record Store (LRS)
-- **SCORM 2004**: Legacy SCORM course packages wrapped and served via SCORM runtime engine
-- **QTI 2.2**: IMS QTI format for portable assessment items (import/export with other LMS platforms)
-- **Open Badges v3**: Verifiable digital credentials anchored on a blockchain (Blockcerts)
+- LTI 1.3: Deep integration with third-party tools (Turnitin, Zoom, Khan Academy) via IMS LTI 1.3
+- xAPI (Tin Can): All learning events published as xAPI statements to Learning Record Store (LRS)
+- SCORM 2004: Legacy SCORM course packages wrapped and served via SCORM runtime engine
+- QTI 2.2: IMS QTI format for portable assessment items (import/export with other LMS platforms)
+- Open Badges v3: Verifiable digital credentials anchored on a blockchain (Blockcerts)
 
 ### Infrastructure
-- **Kubernetes**: EKS + GKE — dedicated node pools for live classroom (GPU nodes for AI proctoring)
-- **Video Infrastructure**: Jitsi Meet (open source) for virtual classrooms; MediaSoup for WebRTC SFU
-- **Media Storage**: MinIO / S3 (course videos, recordings); Cloudfront CDN for global delivery
-- **Search**: Elasticsearch (course search, library search); Typesense (instant autocomplete)
-- **Graph DB**: Neo4j — learning path recommendations (skill graph traversal)
+- Kubernetes: EKS + GKE â€” dedicated node pools for live classroom (GPU nodes for AI proctoring)
+- Video Infrastructure: Jitsi Meet (open source) for virtual classrooms; MediaSoup for WebRTC SFU
+- Media Storage: MinIO / S3 (course videos, recordings); Cloudfront CDN for global delivery
+- Search: Elasticsearch (course search, library search); Typesense (instant autocomplete)
+- Graph DB: Neo4j â€” learning path recommendations (skill graph traversal)
 
 ### CI/CD & GitOps
-- **CI**: Jenkins, GitHub Actions, GitLab CI
-- **CD**: ArgoCD (App-of-Apps), Argo Rollouts (canary — academic semester boundaries)
-- **IaC**: Terraform (EKS/GKE), Ansible, Crossplane
-- **Secrets**: HashiCorp Vault + External Secrets Operator
+- CI: Jenkins, GitHub Actions, GitLab CI
+- CD: ArgoCD (App-of-Apps), Argo Rollouts (canary â€” academic semester boundaries)
+- IaC: Terraform (EKS/GKE), Ansible, Crossplane
+- Secrets: HashiCorp Vault + External Secrets Operator
 
 ### Observability
-- **Metrics**: Prometheus + Grafana (live classroom capacity, concurrent users, SLOs)
-- **Logs**: Loki + Fluent Bit (student PII masked at collection — FERPA compliance)
-- **Traces**: Jaeger + OpenTelemetry (trace assessment submissions end-to-end)
-- **Analytics**: Learning dashboards on Apache Superset — engagement, completion rates, at-risk students
+- Metrics: Prometheus + Grafana (live classroom capacity, concurrent users, SLOs)
+- Logs: Loki + Fluent Bit (student PII masked at collection â€” FERPA compliance)
+- Traces: Jaeger + OpenTelemetry (trace assessment submissions end-to-end)
+- Analytics: Learning dashboards on Apache Superset â€” engagement, completion rates, at-risk students
 
 ### Security (FERPA / COPPA)
-- **Identity**: Keycloak (student/parent/staff SSO), Google Classroom / Microsoft 365 federation
-- **COPPA**: Parental consent workflow for students under 13 — data minimization enforced at API level
-- **Proctoring**: AI-based proctoring (face detection + eye tracking) using OpenCV + TensorFlow — on-premise, no third-party video upload
-- **Network**: Cilium eBPF (zero-trust), Istio mTLS, WAF (Coraza) on all public endpoints
-- **Scanning**: Trivy, Semgrep, OWASP ZAP, SonarQube
+- Identity: Keycloak (student/parent/staff SSO), Google Classroom / Microsoft 365 federation
+- COPPA: Parental consent workflow for students under 13 â€” data minimization enforced at API level
+- Proctoring: AI-based proctoring (face detection + eye tracking) using OpenCV + TensorFlow â€” on-premise, no third-party video upload
+- Network: Cilium eBPF (zero-trust), Istio mTLS, WAF (Coraza) on all public endpoints
+- Scanning: Trivy, Semgrep, OWASP ZAP, SonarQube
 
 ### AI / ML (Adaptive Learning)
-- **Adaptive Learning Engine**: IRT (Item Response Theory) model — dynamically adjusts question difficulty per student
-- **Early Intervention**: ML model predicting at-risk students (dropout likelihood) — triggers counsellor alert
-- **Content Recommendation**: Collaborative filtering (Neo4j graph) + content-based (TF-IDF on course materials)
-- **Essay Grading**: NLP-assisted essay scoring (BERT fine-tuned on academic writing)
-- **Plagiarism Detection**: LSH + MinHash fingerprinting for submission similarity (open source, no external API)
-- **Learning Path Optimization**: Reinforcement learning model (knowledge graph traversal) for personalised paths
+- Adaptive Learning Engine: IRT (Item Response Theory) model â€” dynamically adjusts question difficulty per student
+- Early Intervention: ML model predicting at-risk students (dropout likelihood) â€” triggers counsellor alert
+- Content Recommendation: Collaborative filtering (Neo4j graph) + content-based (TF-IDF on course materials)
+- Essay Grading: NLP-assisted essay scoring (BERT fine-tuned on academic writing)
+- Plagiarism Detection: LSH + MinHash fingerprinting for submission similarity (open source, no external API)
+- Learning Path Optimization: Reinforcement learning model (knowledge graph traversal) for personalised paths
 
 ---
 
 ## Key Design Decisions
 
-1. **xAPI as the universal event bus for learning**: Every student interaction (video watched, quiz attempted, assignment submitted) publishes an xAPI statement — enables cross-platform analytics without vendor lock-in
-2. **On-premise AI proctoring**: No student video leaves the cluster — privacy-first approach (FERPA / COPPA)
-3. **LTI 1.3 for extensibility**: Third-party tools plug in via LTI 1.3 — no custom integrations required
-4. **SCORM runtime in browser**: SCORM packages run client-side (SCORM Cloud open source runtime) — server only stores completion state
-5. **Semester-aware deployment windows**: Production deployments scheduled outside academic peak periods (exam weeks, semester start)
-6. **Accessibility first**: All frontend services WCAG 2.1 AA compliant — automated axe-core checks in every CI pipeline
+1. xAPI as the universal event bus for learning: Every student interaction (video watched, quiz attempted, assignment submitted) publishes an xAPI statement â€” enables cross-platform analytics without vendor lock-in
+2. On-premise AI proctoring: No student video leaves the cluster â€” privacy-first approach (FERPA / COPPA)
+3. LTI 1.3 for extensibility: Third-party tools plug in via LTI 1.3 â€” no custom integrations required
+4. SCORM runtime in browser: SCORM packages run client-side (SCORM Cloud open source runtime) â€” server only stores completion state
+5. Semester-aware deployment windows: Production deployments scheduled outside academic peak periods (exam weeks, semester start)
+6. Accessibility first: All frontend services WCAG 2.1 AA compliant â€” automated axe-core checks in every CI pipeline
 
 ---
 

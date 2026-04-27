@@ -1,8 +1,8 @@
-# api-gateway
+﻿# api-gateway
 
 HTTP+gRPC ingress, LTI 1.3, OAuth2, rate limiting, WAF
 
-**Domain:** `platform` - **Language:** go - **Port:** 50000
+Domain: `platform` - Language: go - Port: 50000
 
 ## Run locally
 

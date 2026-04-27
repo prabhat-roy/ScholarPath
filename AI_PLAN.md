@@ -1,4 +1,4 @@
-# AI_PLAN.md — ScholarPath (EdTech & Learning Platform)
+﻿# AI_PLAN.md â€” ScholarPath (EdTech & Learning Platform)
 
 > Hierarchical AI/ML strategy. Reuses the Paperclip / OpenClaw / NemoClaw
 > agent platform first defined in [ShopOS/AI.md](../ShopOS/AI.md). This file
@@ -11,15 +11,15 @@
 ScholarPath spans K-12, higher-ed, vocational, and corporate learning. AI
 is the difference between a static LMS and an adaptive learning platform.
 
-- **Adaptive learning paths** — IRT / BKT models adjusted by LLM rationale.
-- **Plagiarism + AI-text detection** at submission time.
-- **Automated essay scoring** (writing rubric assistance, not final grade).
-- **AI tutoring chatbot** — Socratic, age-appropriate.
-- **Dropout / at-risk prediction** to enable intervention.
-- **Skill recommendation** for career-aligned upskilling.
+- Adaptive learning paths â€” IRT / BKT models adjusted by LLM rationale.
+- Plagiarism + AI-text detection at submission time.
+- Automated essay scoring (writing rubric assistance, not final grade).
+- AI tutoring chatbot â€” Socratic, age-appropriate.
+- Dropout / at-risk prediction to enable intervention.
+- Skill recommendation for career-aligned upskilling.
 
 Children's safety, academic integrity, and accessibility are the binding
-constraints — every AI surface is age-aware, fairness-audited, and
+constraints â€” every AI surface is age-aware, fairness-audited, and
 auditable.
 
 ---
@@ -28,7 +28,7 @@ auditable.
 
 | # | Use case | Domain | Model class | Latency budget |
 |---|----------|--------|-------------|----------------|
-| 1 | Adaptive learning path (skill mastery → next item) | learning | IRT + BKT + LightGBM ranker + LLM rationale | <300 ms |
+| 1 | Adaptive learning path (skill mastery â†’ next item) | learning | IRT + BKT + LightGBM ranker + LLM rationale | <300 ms |
 | 2 | AI tutoring chatbot (Socratic, age-appropriate) | tutoring | Llama 3.1 70B + curriculum RAG + age-policy | <1.5 s |
 | 3 | Automated essay scoring (writing rubric) | assessment | DeBERTa + custom rubric heads + LLM critique | <3 s |
 | 4 | Plagiarism + AI-text detection | integrity | Embedding match + AI-text classifiers (Binoculars/Ghostbuster) | <1 s |
@@ -45,14 +45,14 @@ auditable.
 
 ## 3. Hierarchical Agent Architecture
 
-Reuses **OpenClaw** / **Paperclip** / **NemoClaw** from `ShopOS/AI.md`.
+Reuses OpenClaw / Paperclip / NemoClaw from `ShopOS/AI.md`.
 
-### Tier 0 — Master Architect Agent
+### Tier 0 â€” Master Architect Agent
 
-`scholar-architect` — researches AI tooling, proposes services, on-boards
+`scholar-architect` â€” researches AI tooling, proposes services, on-boards
 Tier-1 leads, weekly written report. Read-only on prod.
 
-### Tier 1 — Division Leads (5)
+### Tier 1 â€” Division Leads (5)
 
 | Agent | Scope |
 |-------|-------|
@@ -62,30 +62,30 @@ Tier-1 leads, weekly written report. Read-only on prod.
 | `scholar-dataml-lead`     | Feature store, training, drift, fairness |
 | `scholar-platform-lead`   | Cross-cutting (idempotency, saga, outbox) |
 
-### Tier 2 — Specialist Agents
+### Tier 2 â€” Specialist Agents
 
-**By language**: Go, Java, Kotlin, Python, Node, Rust, TypeScript, Dart.
+By language: Go, Java, Kotlin, Python, Node, Rust, TypeScript, Dart.
 
-**By tool**: PostgreSQL, MongoDB, Redis, Elasticsearch, OpenSearch,
+By tool: PostgreSQL, MongoDB, Redis, Elasticsearch, OpenSearch,
 TimescaleDB, ClickHouse, Cassandra, Kafka, NATS, RabbitMQ, Vault,
 Keycloak, OPA, Kyverno, Falco, Cilium, Istio, ArgoCD, Argo Workflows,
 Prometheus, Grafana, Loki, Jaeger, OpenTelemetry, MinIO, Trivy, Cosign,
-Pulsar, Druid, Camunda, OpenFGA, Wazuh, **Moodle bridge**, **Open
-edX bridge**, **H5P**, **Jitsi** (live class), **BigBlueButton**,
-**OpenCourseWare** ingest, **Anki** SRS bridge.
+Pulsar, Druid, Camunda, OpenFGA, Wazuh, Moodle bridge, Open
+edX bridge, H5P, Jitsi (live class), BigBlueButton,
+OpenCourseWare ingest, Anki SRS bridge.
 
-**By service** — one agent per microservice (~170). Owns README,
+By service â€” one agent per microservice (~170). Owns README,
 OpenAPI, tests, CHANGELOG, deps, /healthz.
 
-### Tier 3 — Ephemeral Workers
+### Tier 3 â€” Ephemeral Workers
 
 Spawned for retraining the recommender on weekly clickstream, generating
 content QA, building accessibility-adapted copies of new lessons.
 
 ### Lifecycle
 
-Research → Document → Implement → Test → Review → Deploy → Monitor →
-Respond → Upgrade → Report. Plus an **age-policy gate**: every learner-
+Research â†’ Document â†’ Implement â†’ Test â†’ Review â†’ Deploy â†’ Monitor â†’
+Respond â†’ Upgrade â†’ Report. Plus an age-policy gate: every learner-
 facing AI feature has a separate eval suite for under-13 / 13-17 / adult.
 
 ---
@@ -94,26 +94,26 @@ facing AI feature has a separate eval suite for under-13 / 13-17 / adult.
 
 ```
 ai-platform/
-├── cluster: scholar-ai-{aws,gcp,azure}   ← cloud GPU pool
-├── namespace: scholar-ai-control          ← Paperclip
-├── namespace: scholar-ai-agents           ← OpenClaw runtime
-├── namespace: scholar-ai-sandbox          ← NemoClaw — strict youth-safe guardrails
-├── namespace: scholar-ai-models           ← vLLM, Ollama, LiteLLM, Triton
-├── namespace: scholar-ai-data             ← Qdrant, Weaviate, MinIO, MLflow
-├── namespace: scholar-ai-obs              ← Langfuse, Phoenix
-└── namespace: scholar-ai-pipelines        ← Argo Workflows
+â”œâ”€â”€ cluster: scholar-ai-{aws,gcp,azure}   â† cloud GPU pool
+â”œâ”€â”€ namespace: scholar-ai-control          â† Paperclip
+â”œâ”€â”€ namespace: scholar-ai-agents           â† OpenClaw runtime
+â”œâ”€â”€ namespace: scholar-ai-sandbox          â† NemoClaw â€” strict youth-safe guardrails
+â”œâ”€â”€ namespace: scholar-ai-models           â† vLLM, Ollama, LiteLLM, Triton
+â”œâ”€â”€ namespace: scholar-ai-data             â† Qdrant, Weaviate, MinIO, MLflow
+â”œâ”€â”€ namespace: scholar-ai-obs              â† Langfuse, Phoenix
+â””â”€â”€ namespace: scholar-ai-pipelines        â† Argo Workflows
 ```
 
 ### Hardware
 
-- **Cloud**: A100 for fine-tuning + question-gen; A10G/L4 for inference.
+- Cloud: A100 for fine-tuning + question-gen; A10G/L4 for inference.
 - Voice STT/TTS scaled separately on L4.
 
 ### Software stack
 
 Standard self-hosted set (vLLM, LiteLLM, Paperclip, OpenClaw, NemoClaw,
 Qdrant, Weaviate, MLflow, Feast, Argo Workflows, Evidently, Langfuse,
-Phoenix). Voice via **Whisper-large-v3 + Coqui TTS**.
+Phoenix). Voice via Whisper-large-v3 + Coqui TTS.
 
 ### Data isolation
 
@@ -146,7 +146,7 @@ Phoenix). Voice via **Whisper-large-v3 + Coqui TTS**.
 | 2 | Paperclip + NemoClaw youth policies; Tier-0 architect live |
 | 3 | Tier-1 leads; AI-text detector v0 in shadow |
 | 4 | Per-language / per-tool Tier-2 agents |
-| 5 | Per-service Tier-2 agents (assessment → tutoring → recommender first) |
+| 5 | Per-service Tier-2 agents (assessment â†’ tutoring â†’ recommender first) |
 | 6 | Tutor v1 (high-school, English+Hindi+Spanish) |
 | 7 | Adaptive learning v1; essay scoring rubric assistance |
 | 8 | Voice tutor for K-3; multi-cloud failover drill |
@@ -155,8 +155,8 @@ Phoenix). Voice via **Whisper-large-v3 + Coqui TTS**.
 
 ## 7. Cost Envelope (target)
 
-- **Cloud infra**: $3,500 – $5,800 / month per primary cloud
-- **No** subscription LLM spend
+- Cloud infra: $3,500 â€“ $5,800 / month per primary cloud
+- No subscription LLM spend
 
 ---
 

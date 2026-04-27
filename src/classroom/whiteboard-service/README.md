@@ -1,8 +1,8 @@
-# whiteboard-service
+﻿# whiteboard-service
 
-Service in the **classroom** domain of ScholarPath.
+Service in the classroom domain of ScholarPath.
 
-**Language:** Go · **Port:** 50081
+Language: Go Â· Port: 50081
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/whiteboard-service/](../../../helm/charts/whiteboard-service/) — Helm chart
-- [manifests/classroom/whiteboard-service/](../../../manifests/classroom/whiteboard-service/) — Raw K8s manifests
+- [helm/charts/whiteboard-service/](../../../helm/charts/whiteboard-service/) â€” Helm chart
+- [manifests/classroom/whiteboard-service/](../../../manifests/classroom/whiteboard-service/) â€” Raw K8s manifests

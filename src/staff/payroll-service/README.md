@@ -1,8 +1,8 @@
-# payroll-service
+﻿# payroll-service
 
-Service in the **staff** domain of ScholarPath.
+Service in the staff domain of ScholarPath.
 
-**Language:** Go · **Port:** 50241
+Language: Go Â· Port: 50241
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/payroll-service/](../../../helm/charts/payroll-service/) — Helm chart
-- [manifests/staff/payroll-service/](../../../manifests/staff/payroll-service/) — Raw K8s manifests
+- [helm/charts/payroll-service/](../../../helm/charts/payroll-service/) â€” Helm chart
+- [manifests/staff/payroll-service/](../../../manifests/staff/payroll-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# safeguarding-alerts
+﻿# safeguarding-alerts
 
-Service in the **compliance** domain of ScholarPath.
+Service in the compliance domain of ScholarPath.
 
-**Language:** Go · **Port:** 50283
+Language: Go Â· Port: 50283
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/safeguarding-alerts/](../../../helm/charts/safeguarding-alerts/) — Helm chart
-- [manifests/compliance/safeguarding-alerts/](../../../manifests/compliance/safeguarding-alerts/) — Raw K8s manifests
+- [helm/charts/safeguarding-alerts/](../../../helm/charts/safeguarding-alerts/) â€” Helm chart
+- [manifests/compliance/safeguarding-alerts/](../../../manifests/compliance/safeguarding-alerts/) â€” Raw K8s manifests

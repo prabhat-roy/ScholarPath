@@ -1,4 +1,4 @@
-# Source Code - ScholarPath
+﻿# Source Code - ScholarPath
 
 Backend services organised by business domain. Each domain has its own folder; each
 service inside a domain has its own subfolder with a complete project layout
@@ -28,7 +28,7 @@ service inside a domain has its own subfolder with a complete project layout
 - [`search/`](search/) - Indexing, semantic search, autocomplete, faceted search
 - [`integrations/`](integrations/) - Google Classroom, MS Teams, Zoom, Turnitin
 
-Total: **175+ services**.
+Total: 175+ services.
 
 ## Conventions
 
@@ -40,9 +40,9 @@ Total: **175+ services**.
 
 ## Languages
 
-- **Go** (1.24) - gateway, BFFs, virtual classroom signalling, payment-gateway, audit-trail
-- **Java 21 / Spring Boot 3.3** - LMS core, fee management, certificates, enrolment
-- **Kotlin / Spring Boot 3.3** - assessment engine, QTI parser, role service
-- **Python 3.12 / FastAPI** - adaptive learning, content recommendation NLP, proctoring vision, early intervention
-- **Node.js 22 / Fastify** - notifications, parent portal, real-time chat, whiteboard, polling
-- **Rust 1.80 / Actix** - virtual-classroom SFU, low-latency video pipeline, identity-vault, lockdown-browser
+- Go (1.24) - gateway, BFFs, virtual classroom signalling, payment-gateway, audit-trail
+- Java 21 / Spring Boot 3.3 - LMS core, fee management, certificates, enrolment
+- Kotlin / Spring Boot 3.3 - assessment engine, QTI parser, role service
+- Python 3.12 / FastAPI - adaptive learning, content recommendation NLP, proctoring vision, early intervention
+- Node.js 22 / Fastify - notifications, parent portal, real-time chat, whiteboard, polling
+- Rust 1.80 / Actix - virtual-classroom SFU, low-latency video pipeline, identity-vault, lockdown-browser

@@ -1,8 +1,8 @@
-# content-recommendation
+﻿# content-recommendation
 
-Service in the **analytics** domain of ScholarPath.
+Service in the analytics domain of ScholarPath.
 
-**Language:** Go · **Port:** 50262
+Language: Go Â· Port: 50262
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/content-recommendation/](../../../helm/charts/content-recommendation/) — Helm chart
-- [manifests/analytics/content-recommendation/](../../../manifests/analytics/content-recommendation/) — Raw K8s manifests
+- [helm/charts/content-recommendation/](../../../helm/charts/content-recommendation/) â€” Helm chart
+- [manifests/analytics/content-recommendation/](../../../manifests/analytics/content-recommendation/) â€” Raw K8s manifests

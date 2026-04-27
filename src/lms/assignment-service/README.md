@@ -1,8 +1,8 @@
-# assignment-service
+﻿# assignment-service
 
-Service in the **lms** domain of ScholarPath.
+Service in the lms domain of ScholarPath.
 
-**Language:** Go · **Port:** 50100
+Language: Go Â· Port: 50100
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/assignment-service/](../../../helm/charts/assignment-service/) — Helm chart
-- [manifests/lms/assignment-service/](../../../manifests/lms/assignment-service/) — Raw K8s manifests
+- [helm/charts/assignment-service/](../../../helm/charts/assignment-service/) â€” Helm chart
+- [manifests/lms/assignment-service/](../../../manifests/lms/assignment-service/) â€” Raw K8s manifests

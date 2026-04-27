@@ -1,8 +1,8 @@
-# performance-review
+﻿# performance-review
 
-Service in the **staff** domain of ScholarPath.
+Service in the staff domain of ScholarPath.
 
-**Language:** Go · **Port:** 50242
+Language: Go Â· Port: 50242
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/performance-review/](../../../helm/charts/performance-review/) — Helm chart
-- [manifests/staff/performance-review/](../../../manifests/staff/performance-review/) — Raw K8s manifests
+- [helm/charts/performance-review/](../../../helm/charts/performance-review/) â€” Helm chart
+- [manifests/staff/performance-review/](../../../manifests/staff/performance-review/) â€” Raw K8s manifests

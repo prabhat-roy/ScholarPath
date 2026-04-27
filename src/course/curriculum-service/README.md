@@ -1,8 +1,8 @@
-# curriculum-service
+﻿# curriculum-service
 
-Service in the **course** domain of ScholarPath.
+Service in the course domain of ScholarPath.
 
-**Language:** Go · **Port:** 50060
+Language: Go Â· Port: 50060
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/curriculum-service/](../../../helm/charts/curriculum-service/) — Helm chart
-- [manifests/course/curriculum-service/](../../../manifests/course/curriculum-service/) — Raw K8s manifests
+- [helm/charts/curriculum-service/](../../../helm/charts/curriculum-service/) â€” Helm chart
+- [manifests/course/curriculum-service/](../../../manifests/course/curriculum-service/) â€” Raw K8s manifests

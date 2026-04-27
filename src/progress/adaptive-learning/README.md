@@ -1,8 +1,8 @@
-# adaptive-learning
+﻿# adaptive-learning
 
-Service in the **progress** domain of ScholarPath.
+Service in the progress domain of ScholarPath.
 
-**Language:** Go · **Port:** 50163
+Language: Go Â· Port: 50163
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/adaptive-learning/](../../../helm/charts/adaptive-learning/) — Helm chart
-- [manifests/progress/adaptive-learning/](../../../manifests/progress/adaptive-learning/) — Raw K8s manifests
+- [helm/charts/adaptive-learning/](../../../helm/charts/adaptive-learning/) â€” Helm chart
+- [manifests/progress/adaptive-learning/](../../../manifests/progress/adaptive-learning/) â€” Raw K8s manifests

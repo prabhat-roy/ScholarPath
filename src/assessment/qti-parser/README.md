@@ -1,8 +1,8 @@
-# qti-parser
+﻿# qti-parser
 
-Service in the **assessment** domain of ScholarPath.
+Service in the assessment domain of ScholarPath.
 
-**Language:** Go · **Port:** 50122
+Language: Go Â· Port: 50122
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/qti-parser/](../../../helm/charts/qti-parser/) — Helm chart
-- [manifests/assessment/qti-parser/](../../../manifests/assessment/qti-parser/) — Raw K8s manifests
+- [helm/charts/qti-parser/](../../../helm/charts/qti-parser/) â€” Helm chart
+- [manifests/assessment/qti-parser/](../../../manifests/assessment/qti-parser/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# Events - ScholarPath
+﻿# Events - ScholarPath
 
 Avro schemas for cross-domain events published to Kafka. One file per event,
-named `<domain>.<entity>.<verb>.avsc`. Schema-registry-managed; **never break
-forward compatibility** - evolve fields with defaults only.
+named `<domain>.<entity>.<verb>.avsc`. Schema-registry-managed; never break
+forward compatibility - evolve fields with defaults only.
 
 ## Conventions
 
@@ -13,7 +13,7 @@ forward compatibility** - evolve fields with defaults only.
   - `event_time` (millis since epoch)
   - `actor` (the student / teacher / parent who triggered the event)
   - `correlation_id` (propagated across all related events for tracing)
-- Student PII (student_id, parent_email, dob) is **always** tokenised - schemas
+- Student PII (student_id, parent_email, dob) is always tokenised - schemas
   reference the tokenised form via the shared `StudentRef` record.
 - xAPI statements ride on Kafka under `xapi.statement.recorded` and are tee'd
   to the Cassandra-backed LRS for archival.

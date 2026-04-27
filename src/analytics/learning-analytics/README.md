@@ -1,8 +1,8 @@
-# learning-analytics
+﻿# learning-analytics
 
-Service in the **analytics** domain of ScholarPath.
+Service in the analytics domain of ScholarPath.
 
-**Language:** Go · **Port:** 50260
+Language: Go Â· Port: 50260
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/learning-analytics/](../../../helm/charts/learning-analytics/) — Helm chart
-- [manifests/analytics/learning-analytics/](../../../manifests/analytics/learning-analytics/) — Raw K8s manifests
+- [helm/charts/learning-analytics/](../../../helm/charts/learning-analytics/) â€” Helm chart
+- [manifests/analytics/learning-analytics/](../../../manifests/analytics/learning-analytics/) â€” Raw K8s manifests

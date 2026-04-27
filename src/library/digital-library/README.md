@@ -1,8 +1,8 @@
-# digital-library
+﻿# digital-library
 
-Service in the **library** domain of ScholarPath.
+Service in the library domain of ScholarPath.
 
-**Language:** Go · **Port:** 50220
+Language: Go Â· Port: 50220
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/digital-library/](../../../helm/charts/digital-library/) — Helm chart
-- [manifests/library/digital-library/](../../../manifests/library/digital-library/) — Raw K8s manifests
+- [helm/charts/digital-library/](../../../helm/charts/digital-library/) â€” Helm chart
+- [manifests/library/digital-library/](../../../manifests/library/digital-library/) â€” Raw K8s manifests

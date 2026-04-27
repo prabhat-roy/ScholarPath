@@ -1,8 +1,8 @@
-# document-verification
+﻿# document-verification
 
-Service in the **enrolment** domain of ScholarPath.
+Service in the enrolment domain of ScholarPath.
 
-**Language:** Go · **Port:** 50042
+Language: Go Â· Port: 50042
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/document-verification/](../../../helm/charts/document-verification/) — Helm chart
-- [manifests/enrolment/document-verification/](../../../manifests/enrolment/document-verification/) — Raw K8s manifests
+- [helm/charts/document-verification/](../../../helm/charts/document-verification/) â€” Helm chart
+- [manifests/enrolment/document-verification/](../../../manifests/enrolment/document-verification/) â€” Raw K8s manifests

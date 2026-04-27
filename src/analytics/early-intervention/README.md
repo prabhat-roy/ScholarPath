@@ -1,8 +1,8 @@
-# early-intervention
+﻿# early-intervention
 
-Service in the **analytics** domain of ScholarPath.
+Service in the analytics domain of ScholarPath.
 
-**Language:** Go · **Port:** 50261
+Language: Go Â· Port: 50261
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/early-intervention/](../../../helm/charts/early-intervention/) — Helm chart
-- [manifests/analytics/early-intervention/](../../../manifests/analytics/early-intervention/) — Raw K8s manifests
+- [helm/charts/early-intervention/](../../../helm/charts/early-intervention/) â€” Helm chart
+- [manifests/analytics/early-intervention/](../../../manifests/analytics/early-intervention/) â€” Raw K8s manifests

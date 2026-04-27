@@ -1,8 +1,8 @@
-# teacher-bff
+﻿# teacher-bff
 
 BFF for teacher dashboard (React)
 
-**Domain:** `platform` - **Language:** go - **Port:** 50002
+Domain: `platform` - Language: go - Port: 50002
 
 ## Run locally
 

@@ -1,8 +1,8 @@
-# media-streaming
+﻿# media-streaming
 
-Service in the **library** domain of ScholarPath.
+Service in the library domain of ScholarPath.
 
-**Language:** Go · **Port:** 50223
+Language: Go Â· Port: 50223
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/media-streaming/](../../../helm/charts/media-streaming/) — Helm chart
-- [manifests/library/media-streaming/](../../../manifests/library/media-streaming/) — Raw K8s manifests
+- [helm/charts/media-streaming/](../../../helm/charts/media-streaming/) â€” Helm chart
+- [manifests/library/media-streaming/](../../../manifests/library/media-streaming/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# waitlist-service
+﻿# waitlist-service
 
-Service in the **enrolment** domain of ScholarPath.
+Service in the enrolment domain of ScholarPath.
 
-**Language:** Go · **Port:** 50041
+Language: Go Â· Port: 50041
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/waitlist-service/](../../../helm/charts/waitlist-service/) — Helm chart
-- [manifests/enrolment/waitlist-service/](../../../manifests/enrolment/waitlist-service/) — Raw K8s manifests
+- [helm/charts/waitlist-service/](../../../helm/charts/waitlist-service/) â€” Helm chart
+- [manifests/enrolment/waitlist-service/](../../../manifests/enrolment/waitlist-service/) â€” Raw K8s manifests

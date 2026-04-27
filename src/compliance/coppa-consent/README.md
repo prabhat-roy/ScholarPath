@@ -1,8 +1,8 @@
-# coppa-consent
+﻿# coppa-consent
 
-Service in the **compliance** domain of ScholarPath.
+Service in the compliance domain of ScholarPath.
 
-**Language:** Go · **Port:** 50281
+Language: Go Â· Port: 50281
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/coppa-consent/](../../../helm/charts/coppa-consent/) — Helm chart
-- [manifests/compliance/coppa-consent/](../../../manifests/compliance/coppa-consent/) — Raw K8s manifests
+- [helm/charts/coppa-consent/](../../../helm/charts/coppa-consent/) â€” Helm chart
+- [manifests/compliance/coppa-consent/](../../../manifests/compliance/coppa-consent/) â€” Raw K8s manifests

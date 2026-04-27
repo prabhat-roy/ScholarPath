@@ -1,8 +1,8 @@
-# blockchain-anchor
+﻿# blockchain-anchor
 
-Service in the **certifications** domain of ScholarPath.
+Service in the certifications domain of ScholarPath.
 
-**Language:** Go · **Port:** 50142
+Language: Go Â· Port: 50142
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/blockchain-anchor/](../../../helm/charts/blockchain-anchor/) — Helm chart
-- [manifests/certifications/blockchain-anchor/](../../../manifests/certifications/blockchain-anchor/) — Raw K8s manifests
+- [helm/charts/blockchain-anchor/](../../../helm/charts/blockchain-anchor/) â€” Helm chart
+- [manifests/certifications/blockchain-anchor/](../../../manifests/certifications/blockchain-anchor/) â€” Raw K8s manifests
