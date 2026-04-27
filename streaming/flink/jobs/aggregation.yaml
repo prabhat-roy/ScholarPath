@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: scholarpath-aggregation, namespace: scholarpath }
+spec:
+  deploymentName: scholarpath-flink
+  job:
+    jarURI: s3://scholarpath-flink-jobs/aggregation.jar
+    parallelism: 8
+    upgradeMode: savepoint
+    args: ["--source-topic", "scholarpath.events.enriched", "--sink-topic", "scholarpath.metrics.aggregated", "--window", "5m"]

@@ -1,0 +1,6 @@
+﻿plugins:
+  - { id: tech-radar, config: { url: https://github.com/prabhat-roy/ScholarPath/raw/main/backstage/tech-radar.json } }
+  - { id: lighthouse, config: { baseUrl: https://lhci.scholarpath.internal } }
+  - { id: opencost,   config: { baseUrl: https://opencost.scholarpath.internal } }
+  - { id: argocd,     config: { url: https://argocd.scholarpath.internal, token: "${ARGOCD_TOKEN}" } }
+  - { id: kubernetes, config: { clusters: [{ name: scholarpath-aws, url: https://eks.scholarpath.aws.internal }, { name: scholarpath-gcp, url: https://gke.scholarpath.gcp.internal }, { name: scholarpath-azure, url: https://aks.scholarpath.azure.internal }] } }

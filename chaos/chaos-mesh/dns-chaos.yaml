@@ -1,0 +1,9 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: DNSChaos
+metadata: { name: scholarpath-dns-error, namespace: chaos-mesh }
+spec:
+  action: error
+  mode: all
+  patterns: ["*.scholarpath.svc.cluster.local"]
+  selector: { namespaces: [scholarpath] }
+  duration: 2m

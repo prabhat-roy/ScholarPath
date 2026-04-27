@@ -1,0 +1,20 @@
+﻿{
+  "name": "scholarpath-postgres-cdc",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres.scholarpath.svc",
+    "database.port": "5432",
+    "database.user": "debezium",
+    "database.password": "${file:/secrets/debezium-pg.password:password}",
+    "database.dbname": "scholarpath",
+    "topic.prefix": "scholarpath.cdc",
+    "plugin.name": "pgoutput",
+    "publication.autocreate.mode": "filtered",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka.scholarpath.svc:9092",
+    "schema.history.internal.kafka.topic": "scholarpath.cdc.schema-history",
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://schema-registry.scholarpath.svc:8081",
+    "value.converter.schema.registry.url": "http://schema-registry.scholarpath.svc:8081"
+  }
+}

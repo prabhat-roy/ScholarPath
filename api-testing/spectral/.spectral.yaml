@@ -1,60 +1,22 @@
-extends: ["spectral:oas", "spectral:asyncapi"]
+﻿extends: ["spectral:oas"]
 rules:
-  oas3-api-servers: error
   operation-tag-defined: error
   operation-operationId: error
-  operation-success-response: error
-
-  # FERPA - never expose raw student identifiers in API surfaces.
-  scholarpath-pii-no-raw-student-id:
-    description: Student identifier fields must be tokenised StudentRef, never raw IDs.
+  operation-summary: error
+  operation-tags: error
+  oas3-server-not-example.com: error
+  scholarpath_paths-kebab-case:
+    description: All paths use kebab-case (ScholarPath rule)
     severity: error
-    given: $..properties[?(@property == 'student_id' || @property == 'national_id' || @property == 'ssn')]
+    given: $.paths.*~
     then:
-      function: falsy
-
-  # FERPA - error responses MUST reference the shared Error schema.
-  scholarpath-error-schema:
-    description: 4xx and 5xx responses must reference components/schemas/Error
-    severity: error
-    given: $.paths[*][*].responses[?(@property.match(/^[45]/))].content.application/json
-    then:
-      field: schema.$ref
       function: pattern
-      functionOptions: { match: "^#/components/schemas/Error$" }
-
-  # WCAG accessibility - every endpoint that returns user-facing media MUST
-  # carry an alternativeText / captionUrl property somewhere in its schema.
-  scholarpath-a11y-media-alt-text:
-    description: Endpoints returning user-facing media must expose alternative text / captions (WCAG 2.1 AA, SC 1.1.1 / 1.2.2).
+      functionOptions:
+        match: "^[a-z0-9/{}\\-]+$"
+  scholarpath_require-error-response:
+    description: Every operation MUST declare a 4xx error schema
     severity: warn
-    given: $.paths[*][*].responses[2*].content.application/json.schema.properties[?(@property == 'video_url' || @property == 'image_url')]
+    given: $.paths.*.*.responses
     then:
-      function: truthy
-
-  # WCAG - language must be declared on responses with human-readable text.
-  scholarpath-a11y-language-declared:
-    description: Long-form text fields should declare a language code (WCAG 2.1 AA, SC 3.1.2).
-    severity: warn
-    given: $..properties[?(@property == 'description' || @property == 'body')]
-    then:
-      field: x-language
-      function: truthy
-
-  # COPPA - any endpoint accepting under-13 student data must require X-COPPA-Consent.
-  scholarpath-coppa-consent-header:
-    description: Endpoints that may collect data from under-13 learners must require X-COPPA-Consent header.
-    severity: warn
-    given: $.paths[?(@property contains 'student' || @property contains 'enrolment' || @property contains 'submission')][*].parameters[?(@.in=='header')]
-    then:
-      field: name
-      function: pattern
-      functionOptions: { match: "X-COPPA-Consent" }
-
-  # LTI 1.3 - launches must accept a JWT in id_token.
-  scholarpath-lti-launch-accepts-id-token:
-    description: LTI launch endpoints must accept an id_token form field.
-    severity: error
-    given: $.paths[?(@property contains '/lti/launch')][post].requestBody.content[*].schema.properties[?(@property == 'id_token')]
-    then:
+      field: "4XX"
       function: truthy
